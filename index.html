@@ -100,9 +100,9 @@
           <a class="navbar-item" href="https://waller-lab.github.io/parallel-lensless-dataset/software.html">
             Software
           </a>
-          <a class="navbar-item" href="https://waller-lab.github.io/parallel-lensless-dataset/dataset.html">
+          <!-- <a class="navbar-item" href="https://waller-lab.github.io/parallel-lensless-dataset/dataset.html">
             Dataset
-          </a>
+          </a> -->
         </div>
       </div> 
 
@@ -209,7 +209,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Data-driven developments in lensless imaging, such as machine learning-based reconstruction algorithms, require large datasets. In this work, we introduce a data acquisition pipeline that can capture from multiple lensless imaging systems in parallel, paired with computational ground truth registration. We provide an open-access 25,000 image dataset with two lensless imagers, a reproducible hardware setup, and open-source camera synchronization code. Experimental datasets from our system can enable data-driven developments in lensless imaging, such as machine learning-based reconstruction algorithms and end-to-end system design.
+            Data-driven developments in lensless imaging, such as machine learning-based reconstruction algorithms, require large datasets. In this work, we introduce a data acquisition pipeline that can capture from multiple lensless imaging systems in parallel, paired with computational ground truth registration. Our dataset acquisition system consists of a hardware system for data acquisition and software framework for hardware control and computational processing. We provide an open-access 25,000 image dataset with two lensless imagers, a reproducible hardware setup, and open-source camera synchronization code. Experimental datasets from our system can enable data-driven developments in lensless imaging, such as machine learning-based reconstruction algorithms and end-to-end system design.
           </p>
 
           <p>
@@ -229,14 +229,14 @@
         <div class="container is-max-desktop">
         <div class="content">
             <h2 class="title is-3 section-title">Hardware setup</h2>
-
+            <p>In our hardware system, measurements from multiple lensless imaging systems and a ground truth lensed camera are captured in parallel and computationally aligned to the ground truth image. To enable other researchers to reproduce our hardware setup and tailor to their needs, we provide a step-by-step tutorial for building our system on our <a href="hardware.html">Hardware Setup</a> page.</p>
             <div class="columns is-centered">
-                <div class="column is-half">
+                <div class="column is-10">
                     <figure class="image">
                         <img src="./static/images/hardware-only-04.png" alt="Hardware setup">
                     </figure>
                 </div>
-        </div>
+              </div>
         </div>
     </div>
     </div>
@@ -249,6 +249,14 @@
         <div class="container is-max-desktop">
         <div class="content">
             <h2 class="title is-3 section-title">Software package</h2>
+            We developed a software package to automate image display and camera capture. For near real-time feedback during calibration and alignment, we use an image reconstruction script thatreconstructs images using 200 iterations of FISTA. Additionally, we correct for lens distortion in the lensed, ground truth camera and achieve pixel-wise alignment between the lensless and lensed images via a learned homography. All code is available on <a href="https://github.com/Waller-Lab/parallel-lensless-dataset">Github</a>, with a detailed usage and calibration guide on our <a href="software.html">Software</a> page.
+            <div class="columns is-centered">
+              <div class="column column is-10">
+                  <figure class="image">
+                      <img src="./static/images/software-03.png" alt="Software pipeline">
+                  </figure>
+              </div>
+            </div>
         </div>
         </div>
     </div>
@@ -262,6 +270,27 @@
         <div class="container is-max-desktop">
         <div class="content">
             <h2 class="title is-3 section-title">Dataset</h2>
+
+            <p>We provide an open-source, 25,000 image dataset with two lensless imagers—the DiffuserCam and the Random Multi-focal Lenslet (RML) imager—and paired ground truth images. We used MIRFLICKR-25000 as the ground truth dataset. Our dataset consists of:</p>
+
+            <ul>
+              <li>25,000 DiffuserCam images</li>
+              <li>25,000 RML images</li>
+              <li>25,000 ground truth images</li>
+              <li>Experimentally captured point spread functions (PSFs)</li>
+            </ul>
+
+            <p>The dataset includes a calibration PSF for each imager at an exposure that produced the best results during our tests. We also include a folder of PSFs for both imagers at varying exposures for those interested in playing around with them.</p>
+
+            <p>If you use our dataset in our research, we kindly ask that you <a href="#BibTeX">cite our publication.</a></p>
+
+            <a href="https://drive.google.com/drive/folders/1CqPliG5rZIYH5zA6cXdrA6cvDF7obbvc?usp=sharing"
+               class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                  <i class="far fa-images"></i>
+              </span>
+              <span>Access our dataset</span>
+            </a>
         </div>
         </div>
     </div>
@@ -284,23 +313,37 @@
     </div>
 </section>
 
+<!-- START: Related Work -->
+<section class="section">
+  <div class="columns is-centered">
+    <div class="container is-max-desktop">
+      <div class="content">
+        <h2 class="title is-3">Related Work</h2>
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Lensless Imagers</h3>
+          <ul>
+            <li>DiffuserCam</li>
+            <li>Random Multi-focal Lenslet Imager</li>
+          </ul>
 
-<!-- <section class="section" id="BibTeX">
+          <h3 class="title is-4">Other Lensless Datasets</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: Related Work -->
+
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>
-      @article{pinkard2024informationdrivendesignimagingsystems,
-        title={Information-driven design of imaging systems}, 
-        author={Henry Pinkard and Leyla Kabuli and Eric Markley and Tiffany Chien and Jiantao Jiao and Laura Waller},
-        year={2024},
-        eprint={2405.20559},
-        archivePrefix={arXiv},
-        primaryClass={physics.optics},
-        url={https://arxiv.org/abs/2405.20559}, 
-      }
-</code></pre>
+    <!-- <pre><code>@inproceedings{hung2024scalable,
+    title={Scalable dataset acquisition for data-driven lensless imaging},
+    author={Hung, Clara S. and Kabuli, Leyla A. and Ponomarenko, Vasilisa and Waller, Laura},
+    // Add conference/publication details when available
+}</code></pre> -->
   </div>
-</section> -->
+</section>
 
 
 <footer class="footer py-2">
