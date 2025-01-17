@@ -50,7 +50,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="./static/images/butterfly_favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -191,7 +191,7 @@
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
-                  <span>Data</span>
+                  <span>Dataset</span>
                   </a>
             </div>
           </div>
@@ -221,6 +221,39 @@
 </section>
 
 
+<!-- Dataset -->
+<section class="section">
+  <div class="container is-max-desktop">
+  <div class="columns is-centered">
+      <div class="container is-max-desktop">
+      <div class="content">
+          <h2 class="title is-3 section-title">Dataset</h2>
+
+          <p>We provide an open-source, 25,000 image dataset with two lensless imagers—the DiffuserCam and the Random Multi-focal Lenslet (RML) imager—and paired ground truth images. We used MIRFLICKR-25000 as the ground truth dataset. Our dataset consists of:</p>
+
+          <ul>
+            <li>25,000 DiffuserCam images</li>
+            <li>25,000 RML images</li>
+            <li>25,000 ground truth images</li>
+            <li>Experimentally captured point spread functions (PSFs)</li>
+          </ul>
+
+          <p>The dataset includes a calibration PSF for each imager at an exposure that produced the best results during our tests. We also include a folder of PSFs for both imagers at varying exposures for further experimentation.</p>
+
+          <p>If you use our dataset in our research, we kindly ask that you <a href="#BibTeX">cite our publication.</a></p>
+
+          <a href="https://drive.google.com/drive/folders/1CqPliG5rZIYH5zA6cXdrA6cvDF7obbvc?usp=sharing"
+             class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+                <i class="far fa-images"></i>
+            </span>
+            <span>Access our dataset</span>
+          </a>
+      </div>
+      </div>
+  </div>
+  </div>
+</section>
 
 <!-- Hardware Setup -->
 <section class="section">
@@ -229,7 +262,7 @@
         <div class="container is-max-desktop">
         <div class="content">
             <h2 class="title is-3 section-title">Hardware setup</h2>
-            <p>In our hardware system, measurements from multiple lensless imaging systems and a ground truth lensed camera are captured in parallel and computationally aligned to the ground truth image. To enable other researchers to reproduce our hardware setup and tailor to their needs, we provide a step-by-step tutorial for building our system on our <a href="hardware.html">Hardware Setup</a> page.</p>
+            <p>Our hardware system captures measurements from multiple lensless imaging systems and a ground truth lensed camera in parallel. We provide a step-by-step tutorial for building our system on our <a href="hardware.html">Hardware Setup</a> page and encourage other researchers to build off of our setup.</p>
             <div class="columns is-centered">
                 <div class="column is-10">
                     <figure class="image">
@@ -257,40 +290,6 @@
                   </figure>
               </div>
             </div>
-        </div>
-        </div>
-    </div>
-    </div>
-</section>
-
-<!-- Dataset -->
-<section class="section">
-    <div class="container is-max-desktop">
-    <div class="columns is-centered">
-        <div class="container is-max-desktop">
-        <div class="content">
-            <h2 class="title is-3 section-title">Dataset</h2>
-
-            <p>We provide an open-source, 25,000 image dataset with two lensless imagers—the DiffuserCam and the Random Multi-focal Lenslet (RML) imager—and paired ground truth images. We used MIRFLICKR-25000 as the ground truth dataset. Our dataset consists of:</p>
-
-            <ul>
-              <li>25,000 DiffuserCam images</li>
-              <li>25,000 RML images</li>
-              <li>25,000 ground truth images</li>
-              <li>Experimentally captured point spread functions (PSFs)</li>
-            </ul>
-
-            <p>The dataset includes a calibration PSF for each imager at an exposure that produced the best results during our tests. We also include a folder of PSFs for both imagers at varying exposures for those interested in playing around with them.</p>
-
-            <p>If you use our dataset in our research, we kindly ask that you <a href="#BibTeX">cite our publication.</a></p>
-
-            <a href="https://drive.google.com/drive/folders/1CqPliG5rZIYH5zA6cXdrA6cvDF7obbvc?usp=sharing"
-               class="external-link button is-normal is-rounded is-dark">
-              <span class="icon">
-                  <i class="far fa-images"></i>
-              </span>
-              <span>Access our dataset</span>
-            </a>
         </div>
         </div>
     </div>
@@ -327,6 +326,7 @@
           </ul>
 
           <h3 class="title is-4">Other Lensless Datasets</h3>
+          <!-- Brief blurb about datasets and comparing them. -->
         </div>
       </div>
     </div>
