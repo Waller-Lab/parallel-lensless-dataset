@@ -1,0 +1,14 @@
+cupy==13.3.0
+ipython==8.12.3
+ipywidgets==8.1.1
+matplotlib==3.7.2
+natsort==8.4.0
+numpy==2.2.2
+opencv_contrib_python==4.10.0.84
+opencv_python==4.8.1.78
+Pillow==11.1.0
+pygame==2.5.2
+pypylon==3.0.1
+pytz==2024.1
+scipy==1.15.1
+skimage==0.0

@@ -3,9 +3,19 @@ import matplotlib.pyplot as plt
 import os
 from fista_files.helper_functions import *
 import fista_spectral_cupy as FSC
+import sys
 
-DESTINATION = '/Volumes/LK_CH/november'
-SUB_DIR = DESTINATION + '/CALIBRATION/21-11-2024_17.21.04-goodrml/'
+
+"""
+USAGE:
+    python3 reconstruction.py DESTINATION SUB_DIR
+"""
+
+ARGS = sys.argv
+DESTINATION = ARGS[1]
+SUB_DIR = DESTINATION + ARGS[2]
+
+## This section can be tailored to your system
 RML_PATH = f"{SUB_DIR}/rml"
 DC_PATH = f"{SUB_DIR}/diffusercam"
 PSF_PATH = f"{DESTINATION}/psf"

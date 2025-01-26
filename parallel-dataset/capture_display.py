@@ -9,30 +9,12 @@ import json
 from capture_display_helpers import *
 
 """
-NUM_IMG: total num imgs
-NUM_CAMERAS: total num cameras
-
-frames_to_grab: num frames each camera grabs
-frame_counts: array storing frame counts of each camera
-
-0: ground truth
-1: rml
-2: diffusercam
-
-PSFs should be named: psf.tiff
-
-RUN WITH RIGHT ENV: conda run -n diffuser_cam python main_loop.py
-Serial #s:
-40412531
-40270065
- python3 main_loop_modular.py END START DESTINATION SOURCE DISPLAY &>
- python3 main_loop_modular.py 50000 0 /Volumes/LK_CH ./img_sets/mirflickr/ &> 
- python3 main_loop.py 50000 0 /Volumes/LK_CH ./calibration_imgs &> 
- mirflickr
+USAGE:
+    python3 main_loop_modular.py END START DESTINATION SOURCE DISPLAY &>
 """
 
-log = False
-SERIAL_ARR = ['12345678', '40270083', '40412531']
+LOG = False
+SERIAL_ARR = ['00000000', '11111111', '22222222']
 CAPTURE_FORMAT = "Mono12"
 DISPLAY_MODE = pg.FULLSCREEN # pg.RESIZABLE -or- pg.FULLSCREEN
 
@@ -47,14 +29,14 @@ SOURCE = ARGS[4]
 DESTINATION = f"{CWD}/{DATETIME}"
 DISPLAY = int(ARGS[5]) if ARGS[5] else 1 # 1 is external monitor, 0 is laptop screen
 
-PATH_ARR = set_up_directories_and_log(log, DESTINATION)
+PATH_ARR = set_up_directories_and_log(LOG, DESTINATION)
 
 ## CAMERA VARIABLES
-NUM_CAMERAS = 3
+NUM_CAMERAS = 3    # CHANGE BASED ON YOUR SETUP
 NUM_IMG = int(ARGS[1])
 start_idx = int(ARGS[2])
-frame_counts = [0]*NUM_CAMERAS
-exposure_times = [80000, 80000, 1500]
+frame_counts = [0] * NUM_CAMERAS
+EXPOSURE_TIMES = [80000, 80000, 1500]
 # max = 80ms, min = 1.5ms
 
 img = py.PylonImage()
@@ -64,11 +46,11 @@ cam_array.Open()
 # set the exposure time for each camera
 set_gain(cam_array, gain=0.0)
 set_pixel_format(cam_array, CAPTURE_FORMAT)
-set_exposure_times(cam_array, exposure_times)
-exposure_test(cam_array, exposure_times)
+set_exposure_times(cam_array, EXPOSURE_TIMES)
+exposure_test(cam_array, EXPOSURE_TIMES)
 
 ## Metadata
-metadata = init_metadata(DATETIME, DESTINATION, SOURCE, NUM_IMG, start_idx, CAPTURE_FORMAT, exposure_times)
+metadata = init_metadata(DATETIME, DESTINATION, SOURCE, NUM_IMG, start_idx, CAPTURE_FORMAT, EXPOSURE_TIMES)
 
 ## INIT DISPLAY
 screen = init_display(display=DISPLAY, mode=DISPLAY_MODE)
@@ -90,7 +72,7 @@ for i in range(start_idx, NUM_IMG):
             pg.quit()
             raise SystemExit
     
-    # CROP POSITIONING
+    # CALIBRATE CROP POSITIONING -- tweak based on your display
     crop_dim = (1100, 1100)
     display_dim = (900, 900)
     rml_pos = (730, 60) #x, y
