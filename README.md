@@ -22,6 +22,7 @@ This codebase is a work in progress and will be updated with intermediate helper
 
 ### `capture_display.py`
 The script is controlled with the command:
+    
     python3 capture_display.py END START DESTINATION SOURCE DISPLAY &>
 
 - `END`: index of final image in ground truth dataset
@@ -31,6 +32,7 @@ The script is controlled with the command:
 - `DISPLAY`: choose display mode. `1` for external display and `0` for current laptop screen. Use `1` by default. If using `0`, we recommend setting `DISPLAY_MODE = pg.RESIZABLE`.
 
 Example:
+    
     python3 capture_display.py 1000 0 /path/to/dest/ /path/to/groundtruth/dataset 1 &>
 
 #### Other parameters
@@ -50,6 +52,7 @@ Different displays have different aspect ratios and resolutions. Unfortunately, 
 
 ### `reconstruction.py`
 This script is controlled by the following command:
+    
     python3 reconstruction.py DESTINATION SUB_DIR
 
 - `DESTINATION`: desired destination directory for recons. If used with our `capture_display` script, this is the same`DESTINATION` directory.
