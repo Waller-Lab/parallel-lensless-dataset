@@ -62,5 +62,24 @@ This script is controlled by the following command:
 
 Reconstructions will be saved in `DESTINATION/SUB_DIR/recons`.
 
+#### Undoing lens distortion
+The code and calibration file for undoing the lens distortion on the ground truth image can be found in `parallel-dataset/undistort/`
+
+Example Usage:
+1. Prepare your images and calibration data:
+    - Place all the images you want to undistort in a folder (e.g., `images/`).
+    - Ensure you have the ``calibration_data.npz` file containing the camera calibration data 
+      The `.npz` file should contain two arrays: `camera_matrix` and `dist_coeffs`.
+2. Run the script from the command line:
+    ```bash
+    python3 undistort.py images ./images calibration_path ./calibration_data.npz --root_path ./output/
+    ```
+    - `images`: Path to the folder containing images to undistort.
+    - `calibration_path`: Path to the `.npz` file containing camera calibration data.
+    - `--root_path`: (Optional) Root path to save the undistorted images. Defaults to the current directory (`./`).
+3. Output:
+    - The undistorted images will be saved in a subdirectory named `undistorted_images/` under the specified `--root_path`.
+    - For example, if `--root_path` is `./output/`, the undistorted images will be saved in `./output/undistorted_images/`.
+
 ## Troubleshooting
 Guide for troubleshooting common bugs coming soon!
