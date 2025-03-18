@@ -62,7 +62,7 @@ This script is controlled by the following command:
 
 Reconstructions will be saved in `DESTINATION/SUB_DIR/recons`.
 
-#### Undoing lens distortion
+### Undoing lens distortion
 The code and calibration file for undoing the lens distortion on the ground truth image can be found in `parallel-dataset/undistort/`
 
 Example Usage:
