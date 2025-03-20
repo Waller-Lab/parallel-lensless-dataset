@@ -1,20 +1,15 @@
 import cv2
 import numpy as np
 import glob
-import skimage.io as skio
 import os
 import matplotlib.pyplot as plt
-from scipy.fft import fft2, ifft2
-import cv2
 import numpy as np
 import argparse
-from undistort import undistort_images
-import skimage.transform
-
 
 """
 This script takes in three arguments:
-python3 undistort.py images [PATH TO IMAGES] calibration_path [PATH TO CALIBRATION FILE] --root_path [ROOT DIRECTORY]"""
+python3 undistort.py --images [PATH TO IMAGES] --calibration_path [PATH TO CALIBRATION FILE] --root_path [ROOT DIRECTORY]
+"""
 
 def undistort_image(image_path, camera_matrix, dist_coeffs, root_path='./'):
     """
@@ -48,10 +43,10 @@ def undistort_image(image_path, camera_matrix, dist_coeffs, root_path='./'):
     undistorted_img = cv2.cvtColor(undistorted_img, cv2.COLOR_BGR2RGB)
 
     # # Display the results
-    if not os.path.exists(root_path + 'undistorted_images/'):
-        os.makedirs(root_path + 'undistorted_images/')
+    if not os.path.exists(os.path.join(root_path, 'undistorted_images/')):
+        os.makedirs(os.path.join(root_path, 'undistorted_images/'))
 
-    cv2.imwrite(root_path + 'undistorted_images/' + 'undistorted_' + image_path.split('/')[-1], undistorted_img)
+    cv2.imwrite(os.path.join(root_path, 'undistorted_images', 'undistorted_' + image_path.split('/')[-1]), undistorted_img)
     return undistorted_img
 
 def undistort_images(images, calibration_path, root_path='./'):
@@ -77,14 +72,16 @@ def undistort_images(images, calibration_path, root_path='./'):
     return undistorted_images
 
 
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser(description="Undistort images using camera calibration data.")
-    parser.add_argument("images", type=str, help="Path to the folder containing images to undistort.")
-    parser.add_argument("calibration_path", type=str, help="Path to the .npz file containing camera calibration data.")
+    parser.add_argument("--images", type=str, help="Path to the folder containing images to undistort.")
+    parser.add_argument("--calib_path", type=str, help="Path to the .npz file containing camera calibration data.")
     parser.add_argument("--root_path", type=str, default="./", help="Root path to save the undistorted images.")
 
     args = parser.parse_args()
 
-    undistorted_images = undistort_images(args.images, args.calibration_path, args.root_path)
-    print(f"Undistorted {len(undistorted_images)} images and saved to {args.root_path}undistorted_images/")
+    undistorted_images = undistort_images(args.images, args.calib_path, args.root_path)
+    print(f"Undistorted {len(undistorted_images)} images and saved to {args.root_path}/undistorted_images/")
+
+if __name__ == "__main__":
+    main()
