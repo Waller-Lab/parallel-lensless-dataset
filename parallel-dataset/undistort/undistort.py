@@ -42,11 +42,15 @@ def undistort_image(image_path, camera_matrix, dist_coeffs, root_path='./'):
     # Convert from BGR to RGB
     undistorted_img = cv2.cvtColor(undistorted_img, cv2.COLOR_BGR2RGB)
 
+    # Normalize 0-1, convert to float32
+    undistorted_img = undistorted_img.astype(np.float32) / 255.0
+
     # # Display the results
     if not os.path.exists(os.path.join(root_path, 'undistorted_images/')):
         os.makedirs(os.path.join(root_path, 'undistorted_images/'))
 
-    cv2.imwrite(os.path.join(root_path, 'undistorted_images', 'undistorted_' + image_path.split('/')[-1]), undistorted_img)
+    # plt saves as RGB
+    plt.imsave(os.path.join(root_path, 'undistorted_images', 'undistorted_' + image_path.split('/')[-1]), undistorted_img)
     return undistorted_img
 
 def undistort_images(images, calibration_path, root_path='./'):
