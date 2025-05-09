@@ -1,6 +1,6 @@
 import os
 from typing import List
-
+import glob
 import kornia as K
 import matplotlib.pyplot as plt
 import numpy as np
@@ -13,7 +13,7 @@ from skimage.transform import rescale, resize
 import argparse
 import skimage.io as skio
 
-def load_images(path='./results', gray=True):
+def load_images(path='./results', gray=True, output_shape=(150, 240)):
     images = [img for img in os.listdir(path) if img.endswith('.jpg') or img.endswith('.png') or img.endswith('.tiff')]
     images = natsorted(images)
     
@@ -31,6 +31,9 @@ def load_images(path='./results', gray=True):
             img = skio.imread(os.path.join(path, img))[:, :, 0:3]
 
         img = img / np.max(img)  # normalize to 1
+
+        if output_shape != (0, 0):
+            img = resize(img, output_shape, anti_aliasing=True)
 
         # Convert to tensor
         img = torch.from_numpy(img).to(torch.float32)
@@ -79,22 +82,54 @@ def main():
 
     gray = True if args.gray == 'True' else False
 
-    # Load images
-    rml_imgs = load_images(os.path.join(args.recon_path), gray=gray)
-    # Warp images and save
+    # Get list of image paths
+    images = glob.glob(os.path.join(args.recon_path, '*.tiff'))
+    images = natsorted(images)
+    
+    # Create output directory
     os.makedirs(args.output_dir, exist_ok=True)
-    for i, img in enumerate(rml_imgs):
-        if len(img.shape) == 3: # Add batch and channel dimensions
-            img = img[None, ...]
+    
+    num_imgs = 0
+    for image_path in images:
+        # Load and process single image
+        img = plt.imread(image_path)
+
+        if img.shape != (150, 240):
+            img = resize(img, (150, 240), anti_aliasing=True)
+        
+        # Convert to tensor and ensure C-contiguous
+        img = np.ascontiguousarray(img)
+        img = torch.from_numpy(img).to(torch.float32)
+        img = img.contiguous() # Ensure tensor is contiguous
+        
+        if len(img.shape) == 3:  # If image has channels
+            img = img.permute(2, 0, 1)  # Change from (H,W,C) to (C,H,W)
+            img = img.contiguous() # Ensure contiguous after permute
+            img = img[None, ...]  # Add batch dimension
         else:
-            img = img[None, None, ...]
-        warped_img = transform.warp_perspective(img.float(), M.float(), dsize=(img.shape[2], img.shape[3])).squeeze().detach().cpu()
+            img = img[None, None, ...]  # Add batch and channel dimensions
+            
+        # Apply homography transform
+        warped_img = transform.warp_perspective(img.float(), M.float(), 
+                                              dsize=(img.shape[2], img.shape[3])).squeeze().detach().cpu()
         
         if not gray:
-            warped_img = warped_img.permute(1, 2, 0) # switch to (H, W, C)
+            warped_img = warped_img.permute(1, 2, 0)  # switch to (H, W, C)
+            warped_img = warped_img.contiguous() # Ensure contiguous after permute
 
-        output_path = os.path.join(args.output_dir, f"warped_image_{i}.tiff")
-        plt.imsave(output_path, warped_img.numpy(), cmap=None if not args.gray else 'gray')
+        # Normalize to 0-1
+        warped_img = warped_img / torch.max(warped_img)
+
+        # Convert to numpy array and ensure C-contiguous before saving
+        warped_img_np = np.ascontiguousarray(warped_img.detach().numpy())
+        
+        # Save warped image
+        output_path = os.path.join(args.output_dir, f"warped_{os.path.basename(image_path)}")
+        plt.imsave(output_path, warped_img_np, cmap=None if not gray else 'gray')
+        
+        num_imgs += 1
+        if num_imgs % 1000 == 0:
+            print(f"Processed {num_imgs} images")
     
     print(f"Saved warped images to {args.output_dir}")
 
