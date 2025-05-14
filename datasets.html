@@ -6,7 +6,7 @@
         content="Parallel Lensless Dataset.">
 
 <!-- Social media meta tags -->
-<meta property="og:title" content="Scalable dataset acquisition for data-driven lensless imaging">
+<meta property="og:title" content="Information-Driven Design of Imaging Systems">
 <meta property="og:description" 
       content="A parallel dataset acqusition for data-driven lensless imaging.">
 <meta property="og:url" content="waller-lab.github.io/parallel-lensless-dataset">
@@ -17,14 +17,14 @@
   <title>Parallel Lensless Dataset Acquisition</title>
  
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9JYPR69ZN"></script>
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-7DPEDT2PJZ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-R9JYPR69ZN');
-</script>
+  gtag('config', 'G-7DPEDT2PJZ');
+</script> -->
 
 
 
@@ -100,9 +100,9 @@
           <a class="navbar-item" href="https://waller-lab.github.io/parallel-lensless-dataset/software.html">
             Software
           </a>
-          <!-- <a class="navbar-item" href="https://waller-lab.github.io/parallel-lensless-dataset/dataset.html">
-            Dataset
-          </a> -->
+          <a class="navbar-item" href="https://waller-lab.github.io/parallel-lensless-dataset/datasets.html">
+            Datasets
+          </a>
         </div>
       </div> 
 
@@ -111,44 +111,58 @@
   </div>
 </nav>
 
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-2 section-title">Software guide</h1>
-          
-          <div class="columns is-centered">
-            <div class="column column is-four-fifths">
-                <figure class="image">
-                    <img src="./static/images/software-03.png" alt="Software pipeline">
-                </figure>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="section">
   <div class="container is-max-desktop">
+    
+    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Overview</h2>
+        <h2 class="title is-3">Datasets</h2>
         <div class="content has-text-justified">
-          <p>
-            Our software package includes scripts for image display and camera capture, along with additional helper scripts that can aid in dataset acquisition. For detailed instructions on how to use these scripts, please refer to our <a href="https://github.com/Waller-Lab/parallel-lensless-dataset">Github Repository</a>. More scripts for lens distortion correction and homography estimation will be added soon.
-          </p>
+        <p>
+          This page provides an overview of how to use our datasets. We provide the following:
+          <ul>
+            <li>The original, full resolution RML, Diffusercam, and Ground Truth measurements.</li>
+            <li>Experimentally captured point-spread function measurements.</li>
+            <li>Full resolution, undistorted Ground Truth measurements.</li>
+            <li>Undistorted Ground Truth measurements warped to RML, at 8x downsampling.</li>
+            <li>Undistorted Ground Truth measurements warped to Diffusercam, at 8x downsampling.</li>
+            <li>Homographies mapping from Ground Truth to RML and Ground Truth to Diffusercam at 8x downsampling.</li>
+            <li>Example <a href="https://github.com/Waller-Lab/parallel-lensless-dataset/blob/main/parallel-dataset/tutorials/preprocess.ipynb">iPython Notebook</a> for processing the original measurements for homography warping and for processing the measurements for machine learning training.</li>
+          </ul>
+        </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Explain the directory -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">The dataset directory</h2>
+        <div class="content has-text-justified">
+        <p>
+          
+        </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Explain the difference between the two homographies -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Processing the images for homography</h2>
+        <div class="content has-text-justified">
+        <p>
+          
+        </p>
         </div>
       </div>
     </div>
 
   </div>
 </section>
+
+
 
 
       <!-- <section class="section">
