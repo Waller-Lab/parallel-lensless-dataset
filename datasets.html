@@ -177,10 +177,21 @@
     <!-- Explain the difference between the two homographies -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Processing the images for homography</h2>
+        <h2 class="title is-3">Preparing the data for downstream tasks</h2>
         <div class="content has-text-justified">
+        <p>With our dataset, we provide two types of homography transforms that can be used to ensure the alignment of lensed ground truth and lensless measurements:
+        </p>
+        <ul>
+          <li>
+            Homography from Ground Truth to Lensless Imager: warps the ground truth lensed camera to the spaces of each lensless imager (Diffusercam and RML). 
+          </li>
+          <li>
+            Homography from Lensless Imager to Ground Truth: warps each lensless imager to the space of the ground truth lensed camera. Useul for fair comparison across all three imagers.
+          </li>
+        </ul>
+        <p>These are for 8x downsampled versions of the dataset. We anticipate providing homographies for 4x and 2x downsampling in the future.</p>
         <p>
-          <!-- Include ipynb tutorial -->
+          We provide an <a href="https://github.com/Waller-Lab/parallel-lensless-dataset/blob/main/parallel-dataset/tutorials/preprocess.ipynb">iPython Notebook</a> tutorial that walks users step-by-step through how to prepare our dataset to be used in their own projects. Using the 8x downsampled measurements as a starting point, the tutorial includes loading lensed measurements, downsampling lensless measurements, and preparing the data for training and evaluation view.
         </p>
         </div>
       </div>
