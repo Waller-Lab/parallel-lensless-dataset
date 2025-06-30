@@ -122,12 +122,12 @@
         <p>
           This page provides an overview of how to use our datasets. We provide the following:
           <ul>
-            <li>The original, full resolution RML, Diffusercam, and Ground Truth measurements.</li>
-            <li>Experimentally captured point-spread function measurements.</li>
-            <li>Full resolution, undistorted Ground Truth measurements.</li>
-            <li>Undistorted Ground Truth measurements warped to RML, at 8x downsampling.</li>
-            <li>Undistorted Ground Truth measurements warped to Diffusercam, at 8x downsampling.</li>
-            <li>Homographies mapping from Ground Truth to RML and Ground Truth to Diffusercam at 8x downsampling.</li>
+            <li>The original, full resolution RML, Diffusercam, and Ground Truth measurements. <a href="">[HERE]</a></li>
+            <li>Experimentally captured point-spread function measurements. <a href="">[HERE]</a></li>
+            <li>Full resolution, undistorted Ground Truth measurements. <a href="">[HERE]</a></li>
+            <li>Undistorted Ground Truth measurements warped to RML, at 8x downsampling. <a href="">[HERE]</a></li>
+            <li>Undistorted Ground Truth measurements warped to Diffusercam, at 8x downsampling. <a href="">[HERE]</a></li>
+            <li>Homographies mapping from Ground Truth to RML and Ground Truth to Diffusercam at 8x downsampling. <a href="">[HERE]</a></li>
             <li>Example <a href="https://github.com/Waller-Lab/parallel-lensless-dataset/blob/main/parallel-dataset/tutorials/preprocess.ipynb">iPython Notebook</a> for processing the original measurements for homography warping and for processing the measurements for machine learning training.</li>
           </ul>
         </p>
@@ -141,7 +141,34 @@
         <h2 class="title is-3">The dataset directory</h2>
         <div class="content has-text-justified">
         <p>
-          
+          Our dataset directory is organized as follows:
+          <pre><code>
+            February 100k Dataset/
+            ├── (1) Full Resolution Measurements/
+            │   ├── 0-25k/
+            |   │   ├── diffusercam/
+            |   │   ├── ground_truth/
+            |   │   ├── rml/
+            |   │   └── undistorted_ground_truth_images/
+            │   ├── 25k-50k/
+            │   ├── 50k-75k/
+            │   └── 75k-100k/
+            ├── (2) PSFs/
+            │   ├── mono8_psfs/
+            │   ├── mono12_psfs/
+            │   └── rgb_psfs/
+            ├── (3) Homographies/
+            │   ├── Ground Truth to Lensless Imager/
+            ├───└── Lensless Imager to Ground Truth/
+            └───(4) 8x Downsampled Registered Ground Truth to Imager Space/
+          </code></pre>
+          Folder (1) contains full resolution measurements of 100,000 images, split into 25,000 folders which each contain a folder for each imager: the Diffusercam, ground truth lensed camera, and RML. We also include the undistorted version of the lensed images.</p>
+
+          <p>Folder (2) contains PSFs for each imager in Mono8, Mono12, and RGB8 color formats.</p>
+
+          <p>Folder (3) contains <code>.npy</code> files storing homography transformations from the lensed camera to both lensless imagers and from the lensless imagers to the lensed camera at 8x downsampling.</p>
+
+          <p>Folder (4) contains 8x downsampled versions of the undistorted lensed measurements warped to the space of the lensless imagers.</p>
         </p>
         </div>
       </div>
@@ -153,7 +180,7 @@
         <h2 class="title is-3">Processing the images for homography</h2>
         <div class="content has-text-justified">
         <p>
-          
+          <!-- Include ipynb tutorial -->
         </p>
         </div>
       </div>
