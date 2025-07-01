@@ -120,20 +120,39 @@
         <h2 class="title is-3">Datasets</h2>
         <div class="content has-text-justified">
         <p>
-          This page provides an overview of how to use our datasets. We provide the following:
+          This page provides an overview of how to use our datasets. We provide the following (see the section below for sub-directory organization):
           <ul>
-            <li>The original, full resolution RML, Diffusercam, and Ground Truth measurements. <a href="">[HERE]</a></li>
-            <li>Experimentally captured point-spread function measurements. <a href="">[HERE]</a></li>
-            <li>Full resolution, undistorted Ground Truth measurements. <a href="">[HERE]</a></li>
-            <li>Undistorted Ground Truth measurements warped to RML, at 8x downsampling. <a href="">[HERE]</a></li>
-            <li>Undistorted Ground Truth measurements warped to Diffusercam, at 8x downsampling. <a href="">[HERE]</a></li>
-            <li>Homographies mapping from Ground Truth to RML and Ground Truth to Diffusercam at 8x downsampling. <a href="">[HERE]</a></li>
+            <li>The original, full resolution RML, Diffusercam, and Ground Truth measurements. <a href="https://drive.google.com/drive/folders/1SwRUQGZ4nsQVhe1KPJ7MDL5d8CKtx9zu?usp=sharing">[LINK]</a></li>
+            <li>Experimentally captured point-spread function measurements. <a href="https://drive.google.com/drive/folders/1LMcOIiAGsAAWDenUHhxdIG7DVw_tGrvd?usp=sharing">[LINK]</a></li>
+            <li>Full resolution, undistorted Ground Truth measurements. <a href="https://drive.google.com/drive/folders/1SwRUQGZ4nsQVhe1KPJ7MDL5d8CKtx9zu?usp=drive_link">[LINK]</a></li>
+            <li>Undistorted Ground Truth measurements warped to Lensless Imagers, at 8x downsampling. <a href="https://drive.google.com/drive/folders/1D8frfCtFoi3REklvPk--Tl55SCADH4PH?usp=sharing">[LINK]</a></li>
+            <li>Homographies mapping from Ground Truth to RML and Ground Truth to Diffusercam at 8x downsampling. <a href="https://drive.google.com/drive/folders/1IRx5_XrReercmUMlgr-F1-PYxSOY-_Mq?usp=sharing">[LINK]</a></li>
             <li>Example <a href="https://github.com/Waller-Lab/parallel-lensless-dataset/blob/main/parallel-dataset/tutorials/preprocess.ipynb">iPython Notebook</a> for processing the original measurements for homography warping and for processing the measurements for machine learning training.</li>
           </ul>
         </p>
+
+        <div class="buttons is-centered">
+          <a href="https://drive.google.com/drive/folders/1QxMBwavjwrUELhgV1_pFcdRqsZqzU629"
+               class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                  <i class="far fa-images"></i>
+              </span>
+              <span>25,000 image dataset</span>
+            </a>
+
+            <a href="https://drive.google.com/drive/folders/1tY0lgakSKO-ztF5A_ulVPBQDTz4eh7T5?usp=sharing"
+               class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                  <i class="far fa-images"></i>
+              </span>
+              <span>100,000 image dataset</span>
+            </a>
+        </div>
         </div>
       </div>
     </div>
+
+    <hr>
 
     <!-- Explain the directory -->
     <div class="columns is-centered has-text-centered">
@@ -143,7 +162,7 @@
         <p>
           Our dataset directory is organized as follows:
           <pre><code>
-            February 100k Dataset/
+            100k Dataset/
             ├── (1) Full Resolution Measurements/
             │   ├── 0-25k/
             |   │   ├── diffusercam/
@@ -169,6 +188,8 @@
           <p>Folder (3) contains <code>.npy</code> files storing homography transformations from the lensed camera to both lensless imagers and from the lensless imagers to the lensed camera at 8x downsampling.</p>
 
           <p>Folder (4) contains 8x downsampled versions of the undistorted lensed measurements warped to the space of the lensless imagers.</p>
+
+          <p><strong>25,000 Image Dataset:</strong> We also include a separate folder that follows a similar sub-directory structure for those who only want to interface with the 25,000 image dataset, linked above.</p>
         </p>
         </div>
       </div>
