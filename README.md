@@ -19,6 +19,7 @@ The software package consists of two main scripts:
 This codebase is a work in progress and will be updated with intermediate helper scripts.
 
 ### `capture_display.py`
+----
 The script is controlled with the command:
     
     python3 capture_display.py END START DESTINATION SOURCE DISPLAY &>
@@ -49,6 +50,7 @@ Example:
 Different displays have different aspect ratios and resolutions. Unfortunately, this must be calibrated for your system and can be done in the `CALIBRATE CROP POSITIONING` section in the code. We have included positioning parameters that performed the best in our set up. However, we will provide a summary of the Pygame documentation for display calibration here soon.
 
 ### `reconstruction.py`
+----
 This script is controlled by the following command:
     
     python3 reconstruction.py DESTINATION SUB_DIR
@@ -61,6 +63,7 @@ This script is controlled by the following command:
 Reconstructions will be saved in `DESTINATION/SUB_DIR/recons`.
 
 ### `undistort.py`
+----
 The code and calibration file for undoing the lens distortion on the ground truth image can be found in `parallel-dataset/undistort/`
 
 Example Usage:
@@ -83,7 +86,7 @@ Example Usage:
     - For example, if `--root_path` is `./output/`, the undistorted images will be saved in `./output/undistorted_images/`.
 
 ### `apply_homography.py`
-
+----
 The code and calibration file for computationally aligning the lensed and lensless imagers can be found in `parallel-dataset/homography/`. We provide 4 files that are transformation matrices:
 - `GT2DC_homography_x8_color_detached.npy`: from ground truth to Diffusercam
 - `GT2RML_homography_x8_color_detached.npy`: from ground truth to RML
