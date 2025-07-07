@@ -79,7 +79,7 @@ def undistort_images(images, calibration_path, root_path='./'):
 def main():
     parser = argparse.ArgumentParser(description="Undistort images using camera calibration data.")
     parser.add_argument("--images", type=str, help="Path to the folder containing images to undistort.")
-    parser.add_argument("--calib_path", type=str, help="Path to the .npz file containing camera calibration data.")
+    parser.add_argument("--calibration_path", type=str, help="Path to the .npz file containing camera calibration data.")
     parser.add_argument("--root_path", type=str, default="./", help="Root path to save the undistorted images.")
 
     args = parser.parse_args()

@@ -2,8 +2,6 @@
 
 This is the software package accompanying the parallel lensless dataset acquisition detailed [in this project page](https://waller-lab.github.io/parallel-lensless-dataset/). This codebase is implemented in Python.
 
-**NOTE:** this repo a work in progress. Code for distortion correction and homography are coming soon!
-
 ## Setup
 This code can be run python versions 3.11.5 and above. It may run with older versions, though we have not tested it. We recommend setting up a virtual environment of your choice to run the code. 
 
@@ -62,7 +60,7 @@ This script is controlled by the following command:
 
 Reconstructions will be saved in `DESTINATION/SUB_DIR/recons`.
 
-### Undoing lens distortion
+### `undistort.py`
 The code and calibration file for undoing the lens distortion on the ground truth image can be found in `parallel-dataset/undistort/`
 
 Example Usage:
@@ -70,16 +68,49 @@ Example Usage:
     - Place all the images you want to undistort in a folder (e.g., `images/`).
     - Ensure you have the ``calibration_data.npz` file containing the camera calibration data 
       The `.npz` file should contain two arrays: `camera_matrix` and `dist_coeffs`.
-2. Run the script from the command line:
-    ```bash
+2. Run the script from the command line. The script takes in 3 inputs:
+    ```
+    python3 undistort.py --images [PATH TO IMAGES] --calibration_path [PATH TO CALIBRATION FILE] --root_path [ROOT DIRECTORY]
+    
+    bash
     python3 undistort.py images ./images calibration_path ./calibration_data.npz --root_path ./output/
     ```
-    - `images`: Path to the folder containing images to undistort.
-    - `calibration_path`: Path to the `.npz` file containing camera calibration data.
+    - `--images`: Path to the folder containing images to undistort.
+    - `--calibration_path`: Path to the `.npz` file containing camera calibration data.
     - `--root_path`: (Optional) Root path to save the undistorted images. Defaults to the current directory (`./`).
 3. Output:
     - The undistorted images will be saved in a subdirectory named `undistorted_images/` under the specified `--root_path`.
     - For example, if `--root_path` is `./output/`, the undistorted images will be saved in `./output/undistorted_images/`.
+
+### `apply_homography.py`
+
+The code and calibration file for computationally aligning the lensed and lensless imagers can be found in `parallel-dataset/homography/`. We provide 4 files that are transformation matrices:
+- `GT2DC_homography_x8_color_detached.npy`: from ground truth to Diffusercam
+- `GT2RML_homography_x8_color_detached.npy`: from ground truth to RML
+- `DC2GT_homography_x8_color_detached.npy`: from Diffusercam to ground truth
+- `RML2GT_homography_x8_color_detached.npy`: from RML to ground truth
+
+The `apply_homography.py` script takes a directory of images, applies a homography transformation using a provided transformation matrix, and saves the resulting warped images to an output directory.
+
+Example usage:
+1. Prepare your images and homographies:
+    - Place all the images you want to transform in a folder.
+    - Choose the right homography matrix. E.g. if you want to map to ground truth, your input image directory should be of a lensless imager.
+2. Run the script from the command line. The script takes in 4 inputs:
+    - `--recon_path`: Path to the directory containing the input images.
+    - `--matrix_path`: Path to the .npy file containing the transformation matrix.
+    - `--output_dir`: Path to the directory where the warped images will be saved.
+    - `--gray` (str): True if recons are grayscale.
+    ```
+    
+    Example (if terminal in source directory):
+        python parallel-dataset/homography/apply_homography.py --recon_path /path/to/recon/images --matrix_path /path/to/transformation_matrix.npy --output_dir /path/to/output/directory --gray False
+    ```
+3. Output:
+    - The undistorted images will be saved in the specified `--output_dir`.
+
+### Tutorials
+- `preprocess.ipynb`: A tutorial notebook for preparing our dataset to be used for ML training.
 
 ## Troubleshooting
 Guide for troubleshooting common bugs coming soon!
