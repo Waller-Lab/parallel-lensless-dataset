@@ -44,10 +44,17 @@ Example:
 - `CAPTURE_FORMAT`: set the capture format of the camera. For the Basler daA1920-uc, we use `MONO12` or `RGB8`.
 - `DISPLAY_MODE`: use `pg.FULLSCREEN` by default. `pg.RESIZABLE` can be used for troubleshooting.
 - `NUM_CAMERAS`: number of cameras used in system. 
-- `EXPOSURE_TIMES`: array of exposure times for each camera. The order corresponds to 
+- `EXPOSURE_TIMES`: array of exposure times for each camera. The order corresponds to the order of cameras in `SERIAL_ARR`.
 
 #### Calibrating image placement on display
-Different displays have different aspect ratios and resolutions. Unfortunately, this must be calibrated for your system and can be done in the `CALIBRATE CROP POSITIONING` section in the code. We have included positioning parameters that performed the best in our set up. However, we will provide a summary of the Pygame documentation for display calibration here soon.
+Different displays have different aspect ratios and resolutions. Unfortunately, this must be calibrated for your system and can be done in the `CALIBRATE CROP POSITIONING` section in the code. We have included positioning parameters that performed the best in our set up. We recommend reviewing the [Pygame Surface documentation](https://www.pygame.org/docs/ref/surface.html) for further customization. We crop the image that is being displayed and place two on the screen, one for each lensless imager.
+- `crop_dim` : (w, h) - initalizes a canvas of size `CROP_DIM` on the display.
+- `display_dim` : (w, h) - rescale of crop to screen
+- `rml_pos` : (x, y) - position of the image for rml on crop surface
+- `dc_pos` : (x, y) - position of the image for diffusercam on crop surface
+- `crop_pos` : (x, y) - location of crop on screen
+- `dc_dim` : (x, y, w, h) - (x, y) are positions of top left corner of image and (w, h) are dimensions of crop
+- `rml_dim` : (x, y, w, h) - (x, y) are positions of top left corner of image and (w, h) are dimensions of crop
 
 ### `reconstruction.py`
 ----
