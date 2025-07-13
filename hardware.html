@@ -146,7 +146,7 @@
         <h2 class="title is-3">Overview</h2>
         <div class="content has-text-justified">
           <p>
-            Our hardware system consists of a monitor for displaying images from the ground truth dataset, two lensless imagers, and a ground truth lensed camera. Though we use two lensless imagers in our setup, the DiffuserCam and Random Multi-focal Lenslet (RML) imager, the hardware setup can be easily modified to accommodate other lensless imaging systems. This page will be updated with detailed instructions on building and troubleshooting the hardware system.
+            Our hardware system consists of a monitor for displaying images from the ground truth dataset, two lensless imagers, and a ground truth lensed camera. Though we use two lensless imagers in our setup, the DiffuserCam and Random Multi-Focal Lenslet (RML) imager, the hardware setup can be easily modified to accommodate other lensless imaging systems. This page will be updated with detailed instructions on building and troubleshooting the hardware system.
           </p>
         </div>
       </div>
@@ -175,6 +175,7 @@
                 <li>Diffuser: Luminit 0.5°</li>
                 <li>Basler USB 3.1 Hub</li>
                 <li>ThorLabs KM100C - Kinematic Mount</li>
+                <li>Custom 3D printed <a href="https://cad.onshape.com/documents/8b5cffba73557ce58bb90b17/w/baa6ec16d1a4ec1d4b8a031d/e/bc4b23f9163d5ebb2c59158a">2-to-1 mount</a></li>
               </ul>
 
             </div>
@@ -206,9 +207,9 @@
           </div>
 
           <h3 class="title is-4 section-title">2. Build the lensless imagers</h3>
-          <p>For both the RML and Diffusercam, we first mounted the board level sensors onto a 2-to-1 baseplate. Because the Basler board level sensors we used were not compatible with our existing baseplates, we 3D printed a <a href="https://cad.onshape.com/documents/8b5cffba73557ce58bb90b17/w/baa6ec16d1a4ec1d4b8a031d/e/bc4b23f9163d5ebb2c59158a">custom 2-to-1 mount</a> that allowed us to attach our lensless imagers to an off-the-shelf Thorlabs plate. This would allow us to attach the Thorlabs plate to an optical post.</p> 
+          <p>For both the RML and DiffuserCam, we first mounted the board level sensors onto a 2-to-1 baseplate. Because the Basler board level sensors we used were not compatible with our existing baseplates, we 3D printed a <a href="https://cad.onshape.com/documents/8b5cffba73557ce58bb90b17/w/baa6ec16d1a4ec1d4b8a031d/e/bc4b23f9163d5ebb2c59158a">custom 2-to-1 mount</a> that allowed us to attach our lensless imagers to an off-the-shelf Thorlabs plate. This would allow us to attach the Thorlabs plate to an optical post.</p> 
 
-          <p>To build the diffusercam, we taped a piece of diffuser (large enough to cover the sensor) onto the mounted board level by putting double-sided tape on its screws, roughly 4.5mm from the sensor. We also added padding using layers of tape. We created a small aperture using black masking tape by shining a point source at the imaging distance and created an aperture to limit the PSF extent to the center of the sensor.</p>
+            <p>To build the DiffuserCam, we taped a piece of diffuser (large enough to cover the sensor) onto the mounted board level by putting double-sided tape on its screws, roughly 4.5mm from the sensor. We also added padding using layers of tape. We created a small aperture using black masking tape by shining a point source at the imaging distance and created an aperture to limit the PSF extent to the center of the sensor. More details can be found <a href="https://waller-lab.github.io/DiffuserCam/">here</a>.</p>
 
           <div class="columns">
             <div class="column">
@@ -216,21 +217,21 @@
               <p class="has-text-centered is-size-7">Board level sensor mounted on a custom 3D printed mount and Thorlabs baseplate</p>
             </div>
             <div class="column">
-              <img src="./static/images/diffusercam.jpeg" alt="Our mounted Diffusercam">
-              <p class="has-text-centered is-size-7">Our mounted Diffusercam</p>
+              <img src="./static/images/diffusercam.jpeg" alt="Our mounted DiffuserCam">
+              <p class="has-text-centered is-size-7">Our mounted DiffuserCam</p>
             </div>
             <div class="column">
-              <img src="./static/images/beamsplitter.jpeg" alt="Aligning the beamsplitter, lensed camera, and Diffusercam">
-              <p class="has-text-centered is-size-7">Aligning the beamsplitter, lensed camera, and Diffusercam</p>
+              <img src="./static/images/beamsplitter.jpeg" alt="Aligning the beamsplitter, lensed camera, and DiffuserCam">
+              <p class="has-text-centered is-size-7">Aligning the beamsplitter, lensed camera, and DiffuserCam</p>
             </div>
           </div>
 
-          <p>To build the RML, we mounted a custom RML phase mask onto an optical post. Using black masking tape and black cardboard, we built a small enclosure around the mounted board level to block stray light. Having the sensor and phase mask on separate posts makes calibration easier.</p>
+          <p>To build the RML, we mounted a custom RML phase mask onto an optical post. Using black masking tape and black cardboard, we built a small enclosure around the mounted board level sensor to block stray light. Having the board level sensor and RML on two separate optical posts makes alignment easier.</p>
 
           <h3 class="title is-4 section-title">3. Place components on breadboard</h3>
-          <p>First, we placed our display screen at the edge of the breadboard. We decided to place our display screen horizontally to maximize the size of the images we could display and secured the display using clamps on both sides. This allowed us to easily remove the display by loosening the clamps. We divided the display in half with a black separator, leaving one side for the RML and the other for the Diffusercam and lensed camera. We chose to split the Diffusercam with the beamsplitter due to higher light throughput of the gaussian diffuser. Then, we placed the beamsplitter ~12cm away from the display screen. We aligned the lensed camera and Diffusercam to the beamsplitter using a point source (30mm and 25mm from the edge of the beamsplitter to sensor, respectively). </p>
+          <p>First, we placed our display screen at the edge of the breadboard. We decided to place our display screen horizontally to maximize the size of the images we could display. We secured the display using clamps on both sides which allowed us to easily remove the display by loosening the clamps. We divided the display in half with a black separator, leaving one side for the RML and the other for the DiffuserCam and lensed camera. We chose to split the DiffuserCam with the beamsplitter due to higher light throughput of the Gaussian diffuser. Then, we placed the beamsplitter ~12cm away from the display screen. We aligned the lensed camera and DiffuserCam to the beamsplitter using a point source (30mm and 25mm from the edge of the beamsplitter to sensor, respectively). </p>
 
-          <p>On the other side, we placed the mounted board level for the RML ~150mm from the display screen. To it, we aligned the RML phase mask 18mm from the sensor. The RML and Diffusercam are 135mm apart.</p>
+          <p>On the other side, we placed the mounted board level for the RML ~150mm from the display screen. To it, we aligned the RML phase mask 18mm from the sensor. The RML and DiffuserCam are 135mm apart horizontally, parallel to the display.</p>
 
           <div class="columns">
             <div class="column">
@@ -243,18 +244,18 @@
             </div>
             
             <div class="column">
-              <img src="./static/images/two_imagers.jpeg" alt="Diffusercam, lensed camera, and RML on the breadboard">
-              <p class="has-text-centered is-size-7">Diffusercam, lensed camera, and RML on the breadboard</p>
+              <img src="./static/images/two_imagers.jpeg" alt="DiffuserCam, lensed camera, and RML on the breadboard">
+              <p class="has-text-centered is-size-7">DiffuserCam, lensed camera, and RML on the breadboard</p>
             </div>
           </div>
 
           <h3 class="title is-4 section-title">4. Aligning and calibrating the imagers</h3>
           <p>After placing components on the breadboard and coarsely aligning them, we optically aligned the imagers (which includes making sure the sensors are on-axis with the display screen) and acquired calibration PSFs.</p>
 
-          <p> For the lensed camera, we displayed a test image and adjusted the focus ring until it was in focus with the surface of the screen. For the RML and Diffusercam, we placed a point source at the same depth as the display. Then, we adjusted the height of the point source such that the PSF was vertically centered on the sensor. Lastly, we adjusted the tilt of the point source such that it would produce the brightest PSF, which meant the point source is on-axis with the phase mask.</p>
+          <p> For the lensed camera, we displayed a test image and adjusted the focus ring until it was in focus with the surface of the screen. For the RML and DiffuserCam, we placed a point source at the same depth as the display. Then, we adjusted the height of the point source such that the PSF was vertically centered on the sensor. Lastly, we adjusted the tilt of the point source such that it would produce the brightest PSF, which meant the point source is on-axis with the phase mask.</p>
 
           <h3 class="title is-4 section-title">5. Correct for stray light</h3>
-          <p>Before capturing data, we corrected for stray light as much as possible. We built an enclosure around the system using black cardboard and matte black foil to block ambient light. We added dividers between the display and the beamsplitter to prevent the lensed camera and Diffusercam from capturing light directly from the display instead of through the beamsplitter. We also built small enclosures around the lensless sensors to prevent the sensors from capturing ambient light.</p>
+          <p>Before capturing data, we corrected for stray light as much as possible. We built an enclosure around the system using black cardboard and matte black foil to block ambient light. We added dividers between the display and the beamsplitter to prevent the lensed camera and DiffuserCam from capturing light directly from the display instead of through the beamsplitter. We also built small enclosures around the lensless sensors to prevent the sensors from capturing ambient light.</p>
 
           <div class="columns">
             <div class="column">

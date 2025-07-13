@@ -230,7 +230,7 @@
       <div class="content">
           <h2 class="title is-3 section-title">Dataset</h2>
 
-          <p>We provide an open-source, 100,000 image dataset with two lensless imagers—the DiffuserCam and the Random Multi-focal Lenslet (RML) imager—and paired ground truth images. We used the first 100,000 images of the MIRFLICKR-1M dataset as the ground truth dataset. Our dataset consists of:</p>
+            <p>We provide an open-source, 100,000 image dataset with two lensless imagers—the DiffuserCam and the Random Multi-focal Lenslet (RML) imager—and paired ground truth images. We used the first 100,000 images of the <a href="https://press.liacs.nl/mirflickr/">MIRFLICKR-1M dataset</a>. Our dataset consists of:</p>
 
           <ul>
             <li>100,000 DiffuserCam images</li>
@@ -283,7 +283,7 @@
         <div class="container is-max-desktop">
         <div class="content">
             <h2 class="title is-3 section-title">Software package</h2>
-            We developed a software package to automate image display and camera capture. For near real-time feedback during calibration and alignment, we use an image reconstruction script thatreconstructs images using 200 iterations of FISTA. Additionally, we correct for lens distortion in the lensed, ground truth camera and achieve pixel-wise alignment between the lensless and lensed images via a learned homography. All code is available on <a href="https://github.com/Waller-Lab/parallel-lensless-dataset">Github</a>, with a detailed usage and calibration guide on our <a href="software.html">Software</a> page.
+            We provide a software package to automate image display and camera capture. For near real-time feedback during calibration and alignment, we use an image reconstruction script that reconstructs images using FISTA. Additionally, we correct for lens distortion in the lensed, ground truth camera and achieve pixel-wise alignment between the lensless and lensed images via a learned homography. All code is available on <a href="https://github.com/Waller-Lab/parallel-lensless-dataset">Github</a>, with a detailed usage and calibration guide on our <a href="software.html">Software</a> page.
             <div class="columns is-centered">
               <div class="column column is-10">
                   <figure class="image">
@@ -323,7 +323,7 @@
           <h3 class="title is-4">Lensless Imagers</h3>
           <ul>
             <li><a href="https://waller-lab.github.io/DiffuserCam/">DiffuserCam</a></li>
-            <li><a href="https://opg.optica.org/abstract.cfm?uri=COSI-2023-CW3B.2">Random Multi-focal Lenslet Imager</a></li>
+            <li><a href="https://opg.optica.org/abstract.cfm?uri=COSI-2023-CW3B.2">Random Multi-Focal Lenslet Imager</a></li>
           </ul>
 
           <h3 class="title is-4">Other Lensless Datasets</h3>
@@ -356,15 +356,17 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@misc{hung2025scalabledatasetacquisitiondatadriven,
-      title={Scalable dataset acquisition for data-driven lensless imaging}, 
-      author={Clara S. Hung and Leyla A. Kabuli and Vasilisa Ponomarenko and Laura Waller},
+    <p>This work was presented at SPIE Photonics West 2025. The paper and poster can be found in the proceedings <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13333/133330C/Scalable-dataset-acquisition-for-data-driven-lensless-imaging/10.1117/12.3040992.short?tab=ArticleLink">here</a>.</p>
+    <pre><code>@inproceedings{hung2025scalable,
+      title={Scalable dataset acquisition for data-driven lensless imaging},
+      author={Hung, Clara S and Kabuli, Leyla A and Ponomarenko, Vasilisa and Waller, Laura},
+      booktitle={Computational Optical Imaging and Artificial Intelligence in Biomedical Sciences II},
+      volume={13333},
+      pages={54--58},
       year={2025},
-      eprint={2501.13334},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV},
-      url={https://arxiv.org/abs/2501.13334}, 
-}</code></pre>
+      organization={SPIE}
+    }
+    </code></pre>
   </div>
 </section>
 
