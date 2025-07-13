@@ -5,6 +5,8 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
+import gc
+import skimage.io as skio
 
 """
 This script takes in three arguments:
@@ -42,16 +44,27 @@ def undistort_image(image_path, camera_matrix, dist_coeffs, root_path='./'):
     # Convert from BGR to RGB
     undistorted_img = cv2.cvtColor(undistorted_img, cv2.COLOR_BGR2RGB)
 
-    # Normalize 0-1, convert to float32
-    undistorted_img = undistorted_img.astype(np.float32) / 255.0
+    # Normalize 0-1, convert to float32 -- UNCOMMENT IF USING PLT
+    # undistorted_img = undistorted_img.astype(np.float32) / 255.0
 
-    # # Display the results
-    if not os.path.exists(os.path.join(root_path, 'undistorted_images/')):
-        os.makedirs(os.path.join(root_path, 'undistorted_images/'))
+    # Create output directory if it doesn't exist
+    output_dir = os.path.join(root_path, 'undistorted_images')
+    os.makedirs(output_dir, exist_ok=True)
 
-    # plt saves as RGB
-    plt.imsave(os.path.join(root_path, 'undistorted_images', 'undistorted_' + image_path.split('/')[-1]), undistorted_img)
-    return undistorted_img
+    output_path = os.path.join(output_dir, 'undistorted_' + image_path.split('/')[-1])
+    
+    # skio saves as RGB, expects as uint8
+    skio.imsave(output_path, undistorted_img)
+
+    # plt saves as RGB, expects as float32
+    # plt.imsave(output_path, undistorted_img)
+
+    
+    # free up memory
+    del undistorted_img
+    gc.collect()
+
+    return
 
 def undistort_images(images, calibration_path, root_path='./'):
     """
@@ -63,17 +76,22 @@ def undistort_images(images, calibration_path, root_path='./'):
     :param dist_coeffs: The distortion coefficients
     :param root_path: The root path to save the undistorted images
 
-    :return: The undistorted images
+    :return: Number of undistorted images
     """
     images = glob.glob(images + '/*.tiff')
     calibration_data = np.load(calibration_path)
     camera_matrix = calibration_data['camera_matrix']
     dist_coeffs = calibration_data['dist_coeffs']
     
-    undistorted_images = []
+    num_imgs = 0
     for image in images:
-        undistorted_images.append(undistort_image(image, camera_matrix, dist_coeffs, root_path))
-    return undistorted_images
+        undistort_image(image, camera_matrix, dist_coeffs, root_path)
+        num_imgs += 1
+        
+        if num_imgs % 1000 == 0:
+            print(f"Undistorted image {num_imgs}")
+    
+    return num_imgs
 
 
 def main():
@@ -84,8 +102,8 @@ def main():
 
     args = parser.parse_args()
 
-    undistorted_images = undistort_images(args.images, args.calib_path, args.root_path)
-    print(f"Undistorted {len(undistorted_images)} images and saved to {args.root_path}/undistorted_images/")
-
+    print("Beginning undistortion...")
+    undistorted_images = undistort_images(args.images, args.calibration_path, args.root_path)
+    print(f"Undistorted {undistorted_images} images and saved to {args.root_path}/undistorted_images/")
 if __name__ == "__main__":
     main()
