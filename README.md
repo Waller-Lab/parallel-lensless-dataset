@@ -56,6 +56,11 @@ Different displays have different aspect ratios and resolutions. Unfortunately, 
 - `dc_dim` : (x, y, w, h) - (x, y) are positions of top left corner of image and (w, h) are dimensions of crop
 - `rml_dim` : (x, y, w, h) - (x, y) are positions of top left corner of image and (w, h) are dimensions of crop
 
+The code does the following operations:
+- First, create a surface of `crop_dim`
+- Crop image to `rml_dim` and `dc_dim` and place upper left corner at `rml_pos` and `dc_pos`.
+- Then, resize this to `display_dim` and place at `crop_pos`.
+
 ### `reconstruction.py`
 ----
 This script is controlled by the following command:
