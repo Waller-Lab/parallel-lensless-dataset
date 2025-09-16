@@ -111,6 +111,7 @@ Example usage:
 1. Prepare your images and homographies:
     - Place all the images you want to transform in a folder.
     - Choose the right homography matrix. E.g. if you want to map to ground truth, your input image directory should be of a lensless imager.
+    - Code is run at x8 downsampling by default. Make sure to change the downsampling dimensions to match desired output if not at x8.
 2. Run the script from the command line. The script takes in 4 inputs:
     - `--recon_path`: Path to the directory containing the input images.
     - `--matrix_path`: Path to the .npy file containing the transformation matrix.
