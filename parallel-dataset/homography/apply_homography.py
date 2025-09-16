@@ -94,6 +94,7 @@ def main():
         # Load and process single image
         img = plt.imread(image_path)
 
+        # MAKE SURE YOU UPDATE DOWNSAMPLING TO MATCH DESIRED LEVELS. X8 BY DEFAULT
         if img.shape != (150, 240):
             img = resize(img, (150, 240), anti_aliasing=True)
         
