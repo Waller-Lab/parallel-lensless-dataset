@@ -120,7 +120,7 @@
         <h2 class="title is-3">Datasets</h2>
         <div class="content has-text-justified">
         <p>
-          This page provides an overview of how to use our datasets. We provide the following (see the section below for sub-directory organization):
+          This page provides an overview of how to use our dataset. We provide the following (see the section below for sub-directory organization):
           <!-- BUTTONS -->
         <div class="buttons is-centered">
           <a href="https://drive.google.com/drive/folders/1QxMBwavjwrUELhgV1_pFcdRqsZqzU629"
@@ -131,13 +131,13 @@
               <span>25,000 image dataset</span>
             </a>
 
-            <a href="https://drive.google.com/drive/folders/1tY0lgakSKO-ztF5A_ulVPBQDTz4eh7T5?usp=sharing"
+            <!-- <a href="https://drive.google.com/drive/folders/1tY0lgakSKO-ztF5A_ulVPBQDTz4eh7T5?usp=sharing"
                class="external-link button is-normal is-rounded is-dark">
               <span class="icon">
                   <i class="far fa-images"></i>
               </span>
               <span>100,000 image dataset</span>
-            </a>
+            </a> -->
         </div>
           <ul>
             <li>Example <a href="https://github.com/Waller-Lab/parallel-lensless-dataset/blob/main/parallel-dataset/tutorials/preprocess.ipynb">iPython Notebook</a> for processing the original measurements for homography warping and for processing the measurements for machine learning training.</li>
@@ -163,16 +163,16 @@
         <p>
           Our dataset directory is organized as follows:
           <pre><code>
-            100k Dataset/
+            25 Dataset/
             ├── (1) Full Resolution Measurements/
             │   ├── 0-25k/
             |   │   ├── diffusercam/
             |   │   ├── ground_truth/
             |   │   ├── rml/
             |   │   └── undistorted_ground_truth_images/
-            │   ├── 25k-50k/
+            <!-- │   ├── 25k-50k/
             │   ├── 50k-75k/
-            │   └── 75k-100k/
+            │   └── 75k-100k/ -->
             ├── (2) PSFs/
             │   ├── mono8_psfs/
             │   ├── mono12_psfs/
@@ -182,7 +182,7 @@
             ├───└── Lensless Imager to Ground Truth/
             └───(4) 8x Downsampled Registered Ground Truth to Imager Space/
           </code></pre>
-          Folder (1) contains full resolution measurements of 100,000 images, split into 25,000 folders which each contain a folder for each imager: the DiffuserCam, ground truth lensed camera, and RML. We also include the undistorted version of the lensed images.</p>
+          Folder (1) contains full resolution measurements of 25,000 images, which each contain a folder for each imager: the DiffuserCam, ground truth lensed camera, and RML. We also include the undistorted version of the lensed images.</p>
 
           <p>Folder (2) contains PSFs for each imager in Mono8, Mono12, and RGB8 color formats.</p>
 
