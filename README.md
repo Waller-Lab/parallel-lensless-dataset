@@ -56,6 +56,11 @@ Different displays have different aspect ratios and resolutions. Unfortunately, 
 - `dc_dim` : (x, y, w, h) - (x, y) are positions of top left corner of image and (w, h) are dimensions of crop
 - `rml_dim` : (x, y, w, h) - (x, y) are positions of top left corner of image and (w, h) are dimensions of crop
 
+The code does the following operations:
+- First, create a surface of `crop_dim`
+- Crop image to `rml_dim` and `dc_dim` and place upper left corner at `rml_pos` and `dc_pos`.
+- Then, resize this to `display_dim` and place at `crop_pos`.
+
 ### `reconstruction.py`
 ----
 This script is controlled by the following command:
@@ -106,6 +111,7 @@ Example usage:
 1. Prepare your images and homographies:
     - Place all the images you want to transform in a folder.
     - Choose the right homography matrix. E.g. if you want to map to ground truth, your input image directory should be of a lensless imager.
+    - Code is run at x8 downsampling by default. Make sure to change the downsampling dimensions to match desired output if not at x8.
 2. Run the script from the command line. The script takes in 4 inputs:
     - `--recon_path`: Path to the directory containing the input images.
     - `--matrix_path`: Path to the .npy file containing the transformation matrix.

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Hung"
+  given-names: "Clara"
+  orcid: "https://orcid.org/00009-0002-0628-8335"
+- family-names: "Kabuli"
+  given-names: "Leyla"
+  orcid: "https://orcid.org/0000-0001-6018-6773"
+- family-names: "Pomonarenko"
+  given-names: "Vasilisa"
+  orcid: "https://orcid.org/0009-0006-6265-3025"
+- family-names: "Waller"
+  given-names: "Laura"
+  orcid: "https://orcid.org/0000-0003-1243-2356"
+title: "parallel-lensless-dataset"
+version: 1.0.0
+doi: 10.5281/zenodo.1234
+date-released: 2025-01-25
+url: "https://github.com/Waller-Lab/parallel-lensless-dataset"
