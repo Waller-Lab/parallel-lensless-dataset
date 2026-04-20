@@ -143,10 +143,9 @@
             <li>Example <a href="https://github.com/Waller-Lab/parallel-lensless-dataset/blob/main/parallel-dataset/tutorials/preprocess.ipynb">iPython Notebook</a> for processing the original measurements for homography warping and for processing the measurements for machine learning training.</li>
             <li>Experimentally captured point spread function (PSF) measurements. <a href="https://drive.google.com/drive/folders/1LMcOIiAGsAAWDenUHhxdIG7DVw_tGrvd?usp=sharing">[LINK]</a></li>
 
-        <!-- DEJARGON HERE -->
-            <li>The original, full resolution RML, DiffuserCam, and Ground Truth Lensed measurements. <a href="https://drive.google.com/drive/folders/1SwRUQGZ4nsQVhe1KPJ7MDL5d8CKtx9zu?usp=sharing">[LINK]</a></li>
-            <li>Ground truth lensed measurements at 8x downsampling with lens distortion removed and aligned to lensless imagers. <a href="https://drive.google.com/drive/folders/1D8frfCtFoi3REklvPk--Tl55SCADH4PH?usp=sharing">[LINK]</a></li>
-            <li>Homographies mapping from Ground Truth to RML and Ground Truth to DiffuserCam at 8x downsampling. <a href="https://drive.google.com/drive/folders/1IRx5_XrReercmUMlgr-F1-PYxSOY-_Mq?usp=sharing">[LINK]</a></li>
+            <li>The original, full resolution RML, Diffuser, and Ground Truth Lensed measurements. <a href="https://drive.google.com/drive/folders/1SG4cM3eyG22vPb6Qg6Kb2pCaxoXsJWjt?usp=sharing">[LINK]</a></li>
+            <li>Ground truth lensed measurements at 8x downsampling with lens distortion removed and aligned to lensless imagers. <a href="https://drive.google.com/drive/folders/1LWyHNiDyPhxrI4tEKim8xZIAyYU9Te8j?usp=sharing">[LINK]</a></li>
+            <li>Homographies mapping from Ground Truth to RML and Ground Truth to Diffuser at 8x downsampling. <a href="https://drive.google.com/drive/folders/1IRx5_XrReercmUMlgr-F1-PYxSOY-_Mq?usp=sharing">[LINK]</a></li>
           </ul>
         </p>
         </div>
@@ -166,7 +165,7 @@
             25 Dataset/
             ├── (1) Full Resolution Measurements/
             │   ├── 0-25k/
-            |   │   ├── diffusercam/
+            |   │   ├── diffuser/
             |   │   ├── ground_truth/
             |   │   ├── rml/
             |   │   └── undistorted_ground_truth_images/
@@ -182,7 +181,7 @@
             ├───└── Lensless Imager to Ground Truth/
             └───(4) 8x Downsampled Registered Ground Truth to Imager Space/
           </code></pre>
-          Folder (1) contains full resolution measurements of 25,000 images, which each contain a folder for each imager: the DiffuserCam, ground truth lensed camera, and RML. We also include the undistorted version of the lensed images.</p>
+          Folder (1) contains full resolution measurements of 25,000 images, which each contain a folder for each imager: the Diffuser, ground truth lensed camera, and RML. We also include the undistorted version of the lensed images.</p>
 
           <p>Folder (2) contains PSFs for each imager in Mono8, Mono12, and RGB8 color formats.</p>
 
@@ -205,7 +204,7 @@
         </p>
         <ul>
           <li>
-            Homography from Ground Truth to Lensless Imager: warps the ground truth lensed camera to the spaces of each lensless imager (DiffuserCam and RML). 
+            Homography from Ground Truth to Lensless Imager: warps the ground truth lensed camera to the spaces of each lensless imager (Diffuser and RML). 
           </li>
           <li>
             Homography from Lensless Imager to Ground Truth: warps each lensless imager to the space of the ground truth lensed camera. Useful for fair comparison across all three imagers.
@@ -250,7 +249,7 @@
             <li>
               <a href="https://drive.google.com/file/d/1xd78nNMvNTSPJOviwL6pJ1wFwOABV7ap/view?usp=sharing">
               Grayscale Sweep
-              </a>: Contains captures of the 0-255 grayscale images using the DiffuserCam, RML, and lensed camera. We include data using Mono8, Mono12, and RGB8 pixel formats.
+              </a>: Contains captures of the 0-255 grayscale images using the Diffuser, RML, and lensed camera. We include data using Mono8, Mono12, and RGB8 pixel formats.
             </li>
           </ul>
 
