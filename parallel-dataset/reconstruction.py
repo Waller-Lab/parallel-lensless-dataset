@@ -17,7 +17,7 @@ SUB_DIR = DESTINATION + ARGS[2]
 
 ## This section can be tailored to your system
 RML_PATH = f"{SUB_DIR}/rml"
-DC_PATH = f"{SUB_DIR}/diffusercam"
+DC_PATH = f"{SUB_DIR}/diffuser"
 PSF_PATH = f"{DESTINATION}/psf"
 PATH_ARR = [DC_PATH, RML_PATH]
 INDEX_ARR = ["cam_0", "cam_1"]

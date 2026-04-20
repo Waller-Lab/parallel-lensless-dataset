@@ -11,7 +11,7 @@ FORMAT_LST = ['.tiff', '.jpg', '.png']
 def set_up_directories_and_log(log, DESTINATION):
     GT_PATH = f"{DESTINATION}/ground_truth"
     RML_PATH = f"{DESTINATION}/rml"
-    DC_PATH = f"{DESTINATION}/diffusercam"
+    DC_PATH = f"{DESTINATION}/diffuser"
     PATH_ARR = [DC_PATH, RML_PATH, GT_PATH]
 
     os.makedirs(DESTINATION)
@@ -44,7 +44,7 @@ def create_camera_env(NUM_CAMERAS, SERIAL_ARR):
         #TODO: USE SERIAL NUMBER TO DEFINE THE CAMERA!!!
         if camera_serial == SERIAL_ARR[0]:
             idx = 0
-            # cam.Name = f"Diffusercam"
+            # cam.Name = f"diffuser"
         if camera_serial == SERIAL_ARR[1]:
             idx = 1
             # cam.Name = f"RML"
@@ -80,7 +80,7 @@ def init_metadata(DATETIME, DESTINATION, SOURCE, NUM_IMG, start_idx, CAPTURE_FOR
             "Image Start Index": start_idx,
             "Capture Format": CAPTURE_FORMAT,
             
-            "DiffuserCam": {
+            "Diffuser": {
                 "Exposure": exposure_times[0]
             },
             "RML": {
@@ -161,7 +161,7 @@ def display_images(screen, SOURCE, filename, crop_dim=(625, 625), crop_pos=(400,
     crop_dim: dimensions of crop surface
     display_dim: dimensions of display surface
     rml_pos: position of rml image on crop surface
-    dc_pos: position of diffusercam image on crop surface
+    dc_pos: position of diffuser image on crop surface
     crop_pos: position of crop surface on display surface
     """
     screen.fill("black")
@@ -205,7 +205,7 @@ def display_single_image(screen, SOURCE, filename, crop_dim=(625, 625), crop_pos
     crop_dim: dimensions of crop surface
     display_dim: dimensions of display surface
     rml_pos: position of rml image on crop surface
-    dc_pos: position of diffusercam image on crop surface
+    dc_pos: position of diffuser image on crop surface
     crop_pos: position of crop surface on display surface
     """
     screen.fill("black")

@@ -40,7 +40,7 @@ Example:
     - In our project, we used the following indexing scheme:
         - 0: ground truth
         - 1: rml
-        - 2: diffusercam
+        - 2: diffuser
 - `CAPTURE_FORMAT`: set the capture format of the camera. For the Basler daA1920-uc, we use `MONO12` or `RGB8`.
 - `DISPLAY_MODE`: use `pg.FULLSCREEN` by default. `pg.RESIZABLE` can be used for troubleshooting.
 - `NUM_CAMERAS`: number of cameras used in system. 
@@ -51,7 +51,7 @@ Different displays have different aspect ratios and resolutions. Unfortunately, 
 - `crop_dim` : (w, h) - initalizes a canvas of size `CROP_DIM` on the display.
 - `display_dim` : (w, h) - rescale of crop to screen
 - `rml_pos` : (x, y) - position of the image for rml on crop surface
-- `dc_pos` : (x, y) - position of the image for diffusercam on crop surface
+- `dc_pos` : (x, y) - position of the image for diffuser on crop surface
 - `crop_pos` : (x, y) - location of crop on screen
 - `dc_dim` : (x, y, w, h) - (x, y) are positions of top left corner of image and (w, h) are dimensions of crop
 - `rml_dim` : (x, y, w, h) - (x, y) are positions of top left corner of image and (w, h) are dimensions of crop
@@ -100,9 +100,9 @@ Example Usage:
 ### `apply_homography.py`
 ----
 The code and calibration file for computationally aligning the lensed and lensless imagers can be found in `parallel-dataset/homography/`. We provide 4 files that are transformation matrices:
-- `GT2DC_homography_x8_color_detached.npy`: from ground truth to Diffusercam
+- `GT2DC_homography_x8_color_detached.npy`: from ground truth to Diffuser
 - `GT2RML_homography_x8_color_detached.npy`: from ground truth to RML
-- `DC2GT_homography_x8_color_detached.npy`: from Diffusercam to ground truth
+- `DC2GT_homography_x8_color_detached.npy`: from Diffuser to ground truth
 - `RML2GT_homography_x8_color_detached.npy`: from RML to ground truth
 
 The `apply_homography.py` script takes a directory of images, applies a homography transformation using a provided transformation matrix, and saves the resulting warped images to an output directory.
