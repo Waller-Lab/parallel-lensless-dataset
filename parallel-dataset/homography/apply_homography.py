@@ -94,9 +94,9 @@ def main():
         # Load and process single image
         img = plt.imread(image_path)
 
-        # MAKE SURE YOU UPDATE DOWNSAMPLING TO MATCH DESIRED LEVELS. X8 BY DEFAULT
-        if img.shape != (150, 240):
-            img = resize(img, (150, 240), anti_aliasing=True)
+        # MAKE SURE YOU UPDATE DOWNSAMPLING TO MATCH DESIRED LEVELS. X4 BY DEFAULT
+        if img.shape != (300, 480):
+            img = resize(img, (300, 480), anti_aliasing=True)
         
         # Convert to tensor and ensure C-contiguous
         img = np.ascontiguousarray(img)
