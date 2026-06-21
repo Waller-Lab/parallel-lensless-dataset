@@ -58,7 +58,6 @@ def undistort_image(image_path, camera_matrix, dist_coeffs, root_path='./'):
 
     # plt saves as RGB, expects as float32
     # plt.imsave(output_path, undistorted_img)
-
     
     # free up memory
     del undistorted_img
