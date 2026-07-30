@@ -154,9 +154,8 @@ def capture(cam_array, img, i, PATH_ARR, frame_counts, metadata, timeout=1000):
                 metadata["Failed Images"].append(( "Image: " + str(img_nr), filename, "Camera: " + str(cam_id)))
         cam.StopGrabbing()
 
-# TODO: descriptive parameters for shifting images
 
-def display_images(screen, SOURCE, filename, crop_dim=(625, 625), crop_pos=(400, 0), display_dim=(500, 500), rml_pos=(200, 0), dc_pos=(0, 0), dc_dim=(100, 0, 300, 300), rml_dim=(100, 0, 300, 300)):
+def display_images(screen, SOURCE, filename, crop_dim=(1100, 1100), crop_pos=(75, 0), display_dim=(900, 900), rml_pos=(730, 60), dc_pos=(0, 130), dc_dim=(100, 0, 300, 300), rml_dim=(100, 0, 300, 300)):
     """"
     crop_dim: dimensions of crop surface
     display_dim: dimensions of display surface
@@ -200,7 +199,7 @@ def display_images(screen, SOURCE, filename, crop_dim=(625, 625), crop_pos=(400,
     screen.blit(pg.transform.scale(crop, display_dim), crop_pos)
     pg.display.flip()
 
-def display_single_image(screen, SOURCE, filename, crop_dim=(625, 625), crop_pos=(400, 0), display_dim=(500, 500), rml_pos=(200, 0), dc_pos=(0, 0), dc_dim=(100, 0, 300, 300), rml_dim=(100, 0, 300, 300), camera=0):
+def display_single_image(screen, SOURCE, filename, crop_dim=(1100, 1100), crop_pos=(75, 0), display_dim=(900, 900), rml_pos=(730, 60), dc_pos=(0, 130), dc_dim=(100, 0, 300, 300), rml_dim=(100, 0, 300, 300), camera=0):
     """"
     crop_dim: dimensions of crop surface
     display_dim: dimensions of display surface

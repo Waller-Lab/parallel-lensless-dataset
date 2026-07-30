@@ -1,9 +1,9 @@
 # Scalable dataset acquisition for data-driven lensless imaging
 
-This is the software package accompanying the parallel lensless dataset acquisition detailed [in this project page](https://waller-lab.github.io/parallel-lensless-dataset/). This codebase is implemented in Python.
+This is the software package accompanying the Parallel Lensless Dataset detailed [in this project page](https://waller-lab.github.io/parallel-lensless-dataset/) and the ConvRML paper. This codebase is implemented in Python.
 
 ## Setup
-This code can be run python versions 3.11.5 and above. It may run with older versions, though we have not tested it. We recommend setting up a virtual environment of your choice to run the code. 
+This code can be run using python versions 3.11.5 and above. It may run with older versions, though we have not tested it. We recommend setting up a virtual environment of your choice to run the code. 
 
 Install the required packages (this list was generated using [pipreqs](https://github.com/bndr/pipreqs)).
 

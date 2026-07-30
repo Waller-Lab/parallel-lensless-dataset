@@ -168,7 +168,7 @@ def init_metadata(DATETIME, DESTINATION, SOURCE, NUM_IMG, start_idx, CAPTURE_FOR
         "Image Start Index": start_idx,
         "Capture Format": CAPTURE_FORMAT,
         
-        "DiffuserCam": {
+        "Diffuser": {
             "Exposure": 0 if len(exposure_times) == 1 else exposure_times[0]
         },
         "RML": {

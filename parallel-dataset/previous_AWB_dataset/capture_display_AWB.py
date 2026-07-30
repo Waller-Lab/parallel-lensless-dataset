@@ -9,8 +9,9 @@ import json
 from capture_display_helpers_AWB import *
 
 """
+Capture script used for initial 25,000 measurement dataset in https://doi.org/10.1117/12.3040992.
 USAGE:
-    python3 main_loop_modular.py END START DESTINATION SOURCE DISPLAY &>
+    python3 capture_display_AWB.py END START DESTINATION SOURCE DISPLAY &>
 """
 
 LOG = False
