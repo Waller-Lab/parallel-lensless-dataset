@@ -12,6 +12,16 @@ from kornia.augmentation import CenterCrop
 from skimage.transform import rescale, resize
 import argparse
 import skimage.io as skio
+"""
+Script for applying homography transforms.
+
+Calibrated homographies for warping
+- From IMAGER space to GROUND TRUTH space
+- From GROUND TRUTH space to IMAGER space
+are provided here: https://drive.google.com/drive/folders/1Un_t8cCfwTHWRDNiRDEKzgAi8y_BT3CE?usp=drive_link
+
+Please download the appropriate files and update paths as needed. 
+"""
 
 def load_images(path='./results', gray=True, output_shape=(300, 480)):
     """
@@ -60,6 +70,7 @@ def main():
     This script takes a directory of images, applies a homography transformation
     using a provided transformation matrix, and saves the resulting warped images
     to an output directory.
+
     Arguments:
         --recon_path (str): Path to the directory containing the input images.
         --matrix_path (str): Path to the .npy file containing the transformation matrix.
