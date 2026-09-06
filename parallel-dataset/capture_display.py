@@ -184,7 +184,7 @@ try:
                 pg.quit()
                 raise SystemExit
         
-        # CROP POSITIONING x, y
+        # USER TODO: CALIBRATE CROP POSITIONING x, y
         crop_dim = (1100, 1100)
         display_dim = (900, 900)
         rml_pos = (730, 60)
