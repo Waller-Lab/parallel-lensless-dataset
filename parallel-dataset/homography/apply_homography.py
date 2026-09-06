@@ -13,7 +13,11 @@ from skimage.transform import rescale, resize
 import argparse
 import skimage.io as skio
 
-def load_images(path='./results', gray=True, output_shape=(150, 240)):
+def load_images(path='./results', gray=True, output_shape=(300, 480)):
+    """
+    Loads images from PATH for homography.
+    Default is 4x downsampling.
+    """
     images = [img for img in os.listdir(path) if img.endswith('.jpg') or img.endswith('.png') or img.endswith('.tiff')]
     images = natsorted(images)
     
@@ -21,7 +25,6 @@ def load_images(path='./results', gray=True, output_shape=(150, 240)):
     num_imgs = 0
 
     for img in images:
-        # print(img)
         if 'jpg' and 'png' and 'tiff' not in img:
             continue
             
@@ -85,7 +88,7 @@ def main():
     # Get list of image paths
     images = glob.glob(os.path.join(args.recon_path, '*.tiff'))
     images = natsorted(images)
-    
+
     # Create output directory
     os.makedirs(args.output_dir, exist_ok=True)
     
@@ -94,7 +97,7 @@ def main():
         # Load and process single image
         img = plt.imread(image_path)
 
-        # MAKE SURE YOU UPDATE DOWNSAMPLING TO MATCH DESIRED LEVELS. X4 BY DEFAULT
+        # MAKE SURE YOU UPDATE DOWNSAMPLING TO MATCH DESIRED LEVELS. 4X BY DEFAULT
         if img.shape != (300, 480):
             img = resize(img, (300, 480), anti_aliasing=True)
         
