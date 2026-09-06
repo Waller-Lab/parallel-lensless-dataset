@@ -114,7 +114,7 @@ frame_counts: array storing frame counts of each camera
 1: rml
 2: ground truth
 
-python3 main_loop_modular_WB_calibrated.py END START DESTINATION SOURCE DISPLAY &>
+python3 capture_display.py END START DESTINATION SOURCE DISPLAY &>
 """
 try:
     log = True
@@ -123,7 +123,7 @@ try:
     START_TIME = datetime.datetime.now(tz=pytz.timezone('US/Pacific'))
     DATETIME = START_TIME.strftime('%d-%m-%Y_%H.%M.%S')
 
-    SERIAL_ARR = ['40270065', '40270083', '40412531']
+    SERIAL_ARR = ['40270065', '40270083', '40412531'] # replace with your camera serial numbers
     CAPTURE_FORMAT = "RGB8"
 
     ## PATH VARIABLES
@@ -189,6 +189,7 @@ try:
         display_dim = (900, 900)
         rml_pos = (730, 60)
         dc_pos = (30, 165)
+        crop_pos = (75, 0)
         dc_dim = (100, 0, 300, 300)
         rml_dim = (100, 0, 300, 300)
         print("Index: ", i)
