@@ -126,6 +126,7 @@ Example usage:
     - `--matrix_path`: Path to the .npy file containing the transformation matrix.
     - `--output_dir`: Path to the directory where the warped images will be saved.
     - `--gray` (str): True if recons are grayscale.
+
     ```
     Example:
 
