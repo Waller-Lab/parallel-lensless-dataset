@@ -11,16 +11,21 @@ Install the required packages. (This list was generated using [pipreqs](https://
 
 We recommend reviewing our [hardware setup guide](https://waller-lab.github.io/parallel-lensless-dataset/hardware.html) to understand the hardware components being controlled by our scripts.
 
+## Tutorial
+For help using our captured dataset for training machine learning models, refer to our tutorial notebook:
+- `tutorials/preprocess_4x_PLD.ipynb`
+<!-- : **Most up-to-date**, corresponding to the 100,000 image PLD dataset in the [ConvRML](https://lakabuli.github.io/ConvRML/) project at 4x downsampling. -->
+
 ## Usage
 The main scripts in this codebase are:
-- `capture_display.py`: displays the ground truth dataset on the display and captures images in parallel from all imagers.
+- `parallel-dataset/capture_display.py`: displays the ground truth dataset on the display and captures images in parallel from all imagers.
 <!-- - `reconstruction.py`: given calibration PSFs and measurement directory, reconstructs lensless measurements. -->
-- `undistort.py`: undos the lens distortion on ground truth measurements.
-- `apply_homography.py`: warps images to different imager coordinate spaces.
+- `parallel-dataset/undistort/undistort.py`: undos the lens distortion on ground truth measurements.
+- `parallel-dataset/homography/apply_homography.py`: warps images to different imager coordinate spaces.
 
 <!-- This codebase is a work in progress and will be updated with intermediate helper scripts. -->
 
-### `capture_display.py`
+### `parallel-dataset/capture_display.py`
 ----
 The script is controlled with the command:
     
@@ -49,7 +54,7 @@ Example to capture 1000 images:
 - `EXPOSURE_TIMES`: array of exposure times for each camera. The order corresponds to the order of cameras in `SERIAL_ARR`.
 
 #### Calibrating image placement on display
-Different displays have different aspect ratios and resolutions. This must be calibrated for your system and can be done in the `CALIBRATE CROP POSITIONING` section in `capture_display.py`. We have included position parameters used in our set up. We recommend reviewing the [Pygame Surface documentation](https://www.pygame.org/docs/ref/surface.html) for further customization. 
+Different displays have different aspect ratios and resolutions. This must be calibrated for your system and can be done in the `CALIBRATE CROP POSITIONING` section in `parallel-dataset/capture_display.py`. We have included position parameters used in our set up. We recommend reviewing the [Pygame Surface documentation](https://www.pygame.org/docs/ref/surface.html) for further customization. 
 
 The image being displayed is cropped, with two copies placed on the screen, one for each lensless imager.
 - `crop_dim` : (w, h) - initalizes a canvas of size `CROP_DIM` on the display
@@ -66,7 +71,7 @@ The code does the following operations:
 - Then, resize this to `display_dim` and place at `crop_pos`.
 
 #### Calibrating white balance
-For consistency, we turn off auto white balancing (AWB) and set calibrated white balance parameters based on our cameras. You may want to calibrate white balance parameters for your system. Instructions can be found in the `set_white_balance_manual` function in `capture_display_helpers.py`.
+For consistency, we turn off auto white balancing (AWB) and set calibrated white balance parameters based on our cameras. You may want to calibrate white balance parameters for your system. Instructions can be found in the `set_white_balance_manual` function in `parallel-dataset/capture_display_helpers.py`.
 
 <!-- ### `reconstruction.py`
 ----
@@ -81,14 +86,14 @@ This script is controlled by the following command:
 
 Reconstructions will be saved in `DESTINATION/SUB_DIR/recons`. -->
 
-### `undistort.py`
+### `parallel-dataset/undistort/undistort.py`
 ----
-Code for undoing the lens distortion on the ground truth measurements can be found in `parallel-dataset/undistort/`
+Code for undoing the lens distortion on the ground truth measurements can be found in `parallel-dataset/undistort/`.
 
 Example Usage:
 1. Prepare your images and calibration data:
     - Place all the images you want to undistort in a folder (e.g., `images/`).
-    - Ensure you have the ``PLD_calibration.npz` file containing the camera calibration data 
+    - Ensure you have the ``PLD_calibration.npz`` file containing the camera calibration data 
       The `.npz` file should contain two arrays: `camera_matrix` and `dist_coeffs`.
 2. Run the script from the command line. The script takes in 3 inputs:
     ```
@@ -106,7 +111,7 @@ Example Usage:
     - The undistorted images will be saved in a subdirectory named `undistorted_images/` under the specified `--root_path`.
     - For example, if `--root_path` is `./output/`, the undistorted images will be saved in `./output/undistorted_images/`.
 
-### `apply_homography.py`
+### `parallel-dataset/homography/apply_homography.py`
 ----
 The code for computationally aligning the lensed and lensless imagers can be found in `parallel-dataset/homography/`. Transformation matrices can be found in [this Google Drive folder](https://drive.google.com/drive/folders/1hfcoBQc2XNIkmWxK5hOzHYO0GE6Fdfsj?usp=drive_link), which includes 4 files:
 - `GT2DC_homography_4x_2026.torch`: from ground truth to Diffuser
@@ -114,7 +119,7 @@ The code for computationally aligning the lensed and lensless imagers can be fou
 - `DC2GT_homography_4x_2026.torch`: from Diffuser to ground truth
 - `RML2GT_homography_4x_2026.torch`: from RML to ground truth
 
-The `apply_homography.py` script takes a directory of images, applies a homography transformation using a provided transformation matrix, and saves the resulting warped images to an output directory.
+The `parallel-dataset/homography/apply_homography.py` script takes a directory of images, applies a homography transformation using a provided transformation matrix, and saves the resulting warped images to an output directory.
 
 Example usage:
 1. Prepare your images and homographies:
@@ -135,25 +140,23 @@ Example usage:
 3. Output:
     - The undistorted images will be saved in the specified `--output_dir`.
 
-### Tutorials
-- `preprocess.ipynb`: A tutorial notebook for preparing our dataset to be used for training machine learning algorithms.
+## Automatic White Balance (AWB) PLD
+If you are using the 25,000 image AWB-PLD from [an earlier iteration](https://waller-lab.github.io/parallel-lensless-dataset/) of this project, please refer to the files under the folder `previous_AWB_dataset/`.
 
 ## Citation
 If you use any of the code in this repo, please cite:
 
 ```
 @article{Kabuli2026ConvRML,
-author = {Leyla A. Kabuli and Henry Pinkard and Eric Markley and Clara S. Hung and Laura Waller},
-journal = {Optica},
-keywords = {Computational imaging; Imaging systems; Neural networks; Optical imaging; Systems design; Three dimensional imaging},
-number = {2},
-pages = {227--235},
-publisher = {Optica Publishing Group},
-title = {Designing lensless imaging systems to maximize information capture},
-volume = {13},
-month = {Feb},
-year = {2026},
-url = {https://opg.optica.org/optica/abstract.cfm?URI=optica-13-2-227},
-doi = {10.1364/OPTICA.570334},
+  author = {Leyla A. Kabuli and Clara S. Hung and Vasilisa Ponomarenko and Eric Markley and Laura Waller},
+  title = {ConvRML: high-quality lensless imaging with random multi-focal lenslets},
+  journal = {Optics Express},
+  number = {18},
+  pages = {33992--34005},
+  publisher = {Optica Publishing Group},
+  volume = {34},
+  year = {2026},
+  doi = {10.1364/OE.608614},
+  url = {https://opg.optica.org/oe/abstract.cfm?URI=oe-34-18-33992}
 }
 ```
