@@ -232,9 +232,9 @@
       <div class="content">
           <h2 class="title is-3 section-title">New 100,000 image dataset is available in <a href="https://lakabuli.github.io/ConvRML/">ConvRML</a></h2>
 
-          <p>Our paper, <i>ConvRML: high-quality lensless imaging with random multi-focal lenslets</i>, uses our new, updated lensless imaging dataset with 100,000 images.</p>
+          <p>Our paper, <i>ConvRML: high-quality lensless imaging with random multi-focal lenslets</i>, uses our new, updated lensless imaging dataset with 100,000 images. The paper is available on <i><a href="https://doi.org/10.1364/OPTICA.570334">Optics Express</a></i>, and the code and dataset are available on the <a href="https://lakabuli.github.io/ConvRML/">ConvRML Project Page</a>.</p>
 
-          <p>The paper is available on [<a href="https://arxiv.org/abs/2602.04834">arXiv</a>], and the code and dataset are available on the <a href="https://lakabuli.github.io/ConvRML/">ConvRML Project Page</a>.</p>
+          <p>The rest of this page describes the previous version of the dataset, which was a 25,000 image Automatic White Balance dataset. We also detail the hardware setup and software package, which are used in both versions of the dataset.</p>
           
       </div>
       </div>
@@ -297,7 +297,6 @@
     </div>
 </section>
 
-<!-- TODO replace image -->
 <!-- Software Package -->
 <section class="section">
     <div class="container is-max-desktop">
@@ -305,7 +304,7 @@
         <div class="container is-max-desktop">
         <div class="content">
             <h2 class="title is-3 section-title">Software package</h2>
-            We provide a software package to automate image display and camera capture. For near real-time feedback during calibration and alignment, we use an image reconstruction script that reconstructs images using FISTA. Additionally, we correct for lens distortion in the lensed, ground truth camera and achieve pixel-wise alignment between the lensless and lensed images via a learned homography. All code is available on <a href="https://github.com/Waller-Lab/parallel-lensless-dataset">Github</a>, with a detailed usage and calibration guide on our <a href="software.html">Software</a> page.
+            We provide a software package to automate image display and camera capture. For near real-time feedback during calibration and alignment, we use an image reconstruction script that reconstructs images using FISTA. Additionally, we correct for lens distortion in the lensed, ground truth camera and achieve pixel-wise alignment between the lensless and lensed images via a learned homography. All code is available on <a href="https://github.com/Waller-Lab/parallel-lensless-dataset">Github</a> and referenced on our <a href="software.html">Software</a> page.
             <div class="columns is-centered">
               <div class="column column is-10">
                   <figure class="image">
@@ -329,6 +328,7 @@
             <div class="content has-text-justified">
                 <p>
                     We are excited to collaborate with researchers broadly in computational imaging and machine learning. If you are interested in using our dataset, have questions about our work, or would like to collaborate, please reach out to <a href="mailto:clarahung@berkeley.edu">clarahung@berkeley.edu</a>.
+                </p>
         </div>
         </div>
     </div>
@@ -344,10 +344,9 @@
         <div class="content has-text-justified">
           <h3 class="title is-4">Lensless Imagers</h3>
           <ul>
-            <li><a href="https://waller-lab.github.io/DiffuserCam/">DiffuserCam</a></li>
+            <li><a href="https://doi.org/10.1364/OPTICA.570334">ConvRML</a></li> 
             <li><a href="https://opg.optica.org/abstract.cfm?uri=COSI-2023-CW3B.2">Random Multi-Focal Lenslet Imager</a></li>
-            <li><a href="https://arxiv.org/abs/2602.04834">ConvRML</a></li> 
-            <!-- TODO; change once published -->
+            <li><a href="https://waller-lab.github.io/DiffuserCam/">DiffuserCam</a></li>
           </ul>
 
           <h3 class="title is-4">Other Lensless Datasets</h3>
@@ -380,8 +379,27 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <p>This work was presented at SPIE Photonics West 2025. The paper and poster can be found in the proceedings <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13333/133330C/Scalable-dataset-acquisition-for-data-driven-lensless-imaging/10.1117/12.3040992.short?tab=ArticleLink">here</a>.</p>
-    <pre><code>@inproceedings{hung2025scalable,
+    <p>If you use our updated 100,000 measurement dataset or any of the hardware and software methods, please cite the <a href="https://doi.org/10.1364/OPTICA.570334">ConvRML paper</a>.</p>
+
+    <pre><code>
+      @article{Kabuli2026ConvRML,
+        author = {Leyla A. Kabuli and Clara S. Hung and Vasilisa Ponomarenko and Eric Markley and Laura Waller},
+        title = {ConvRML: high-quality lensless imaging with random multi-focal lenslets},
+        journal = {Optics Express},
+        number = {18},
+        pages = {33992--34005},
+        publisher = {Optica Publishing Group},
+        volume = {34},
+        year = {2026},
+        doi = {10.1364/OE.608614},
+        url = {https://opg.optica.org/oe/abstract.cfm?URI=oe-34-18-33992}
+      }
+    </code></pre>
+
+
+    <p>If you used the original 25,000 image dataset, which was presented at SPIE Photonics West 2025, please cite <a href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13333/133330C/Scalable-dataset-acquisition-for-data-driven-lensless-imaging/10.1117/12.3040992.short?tab=ArticleLink">the proceedings</a>.</p>
+    <pre><code>
+      @inproceedings{Hung2025Dataset,
       title={Scalable dataset acquisition for data-driven lensless imaging},
       author={Hung, Clara S and Kabuli, Leyla A and Ponomarenko, Vasilisa and Waller, Laura},
       booktitle={Computational Optical Imaging and Artificial Intelligence in Biomedical Sciences II},
