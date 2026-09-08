@@ -29,7 +29,7 @@ The main scripts in this codebase are:
 ----
 The script is controlled with the command:
     
-    python3 capture_display.py END START DESTINATION SOURCE DISPLAY &>
+    python3 parallel-dataset/capture_display.py END START DESTINATION SOURCE DISPLAY &>
 
 - `END`: index of final image in ground truth dataset to be captured
 - `START`: index of first image in ground truth dataset
@@ -102,7 +102,7 @@ Example Usage:
 
     Example:
     ```
-    python3 parallel-dataset/undistort/undistort.py --images ./images --calibration_path parallel-dataset/undistort/PLD_calibration.npz --root_path ./output/
+    python3 parallel-dataset/undistort/undistort.py --images ./images/ --calibration_path parallel-dataset/undistort/PLD_calibration.npz --root_path ./output/
     ```
     - `--images`: Path to the folder containing images to undistort.
     - `--calibration_path`: Path to the `.npz` file containing camera calibration data.
@@ -139,6 +139,16 @@ Example usage:
     ```
 3. Output:
     - The warped images will be saved in the specified `--output_dir`.
+
+## Setting up automated email notifications
+To set up automated emails notifying you about the state of data acquistion (e.g. capture errors, acquisition completion, etc.), edit the following parameters at the top of `parallel-dataset/capture_display.py`. Note that the `send_notification_email` function is written for Gmail and the SMTP protocol and will need to be changed if you use a different email provider.
+- `SENDER_EMAIL`: your email.
+- `SENDER_PASSWORD`: You may refer to Google's documentation <a href="https://support.google.com/mail/answer/185833?hl=en">here</a>.
+- `RECIPIENT_EMAIL`: the email the data acquisition updates will be sent to.
+
+You can tailor the contents of `send_notification_email` to your needs.
+
+If you do not wish to receive notification emails, simply comment out calls to `send_notification_email` at the bottom of the `parallel-dataset/capture_display.py` script. 
 
 ## Automatic White Balance (AWB) PLD
 If you are using the 25,000 image AWB-PLD from [an earlier iteration](https://waller-lab.github.io/parallel-lensless-dataset/) of this project, please refer to the files under the folder `previous_AWB_dataset/`.
