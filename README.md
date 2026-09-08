@@ -1,6 +1,6 @@
 # Scalable dataset acquisition for data-driven lensless imaging
 
-This is the software package accompanying the Parallel Lensless Dataset detailed in [ConvRML: high-quality lensless imaging with multi-focal lenslets](https://lakabuli.github.io/ConvRML/) and its previous iteration [in this project page](https://waller-lab.github.io/parallel-lensless-dataset/). This codebase is implemented in Python.
+This is the software package accompanying the Parallel Lensless Dataset detailed in [ConvRML: high-quality lensless imaging with random multi-focal lenslets](https://lakabuli.github.io/ConvRML/) and its previous iteration [in this project page](https://waller-lab.github.io/parallel-lensless-dataset/). This codebase is implemented in Python.
 
 ## Setup
 This code can be run using Python versions 3.11.5 and above. It may run with older versions, though we have not tested it. We recommend setting up a virtual environment of your choice to run the code. 
@@ -39,25 +39,25 @@ The script is controlled with the command:
 
 Example to capture 1000 images:
     
-    python3 capture_display.py 1000 0 /path/to/dest/ /path/to/groundtruth/dataset 1 &>
+    python3 parallel-dataset/capture_display.py 1000 0 /path/to/dest/ /path/to/groundtruth/dataset/ 1 &>
 
 #### Other script parameters
-- `LOG`: set up logging for acqusition. If set to `TRUE`, generates a `log.txt`.
+- `log`: set up logging for acquisition. If set to `TRUE`, generates a `log.txt`.
 - `SERIAL_ARR`: array of camera serial numbers.
     - In our project, we used the following indexing scheme:
-        - 0: ground truth
+        - 0: diffuser
         - 1: rml
-        - 2: diffuser
+        - 2: ground truth
 - `CAPTURE_FORMAT`: set the capture format of the camera. For the Basler daA1920-uc, we use `RGB8`.
 - `DISPLAY_MODE`: use `pg.FULLSCREEN` by default. `pg.RESIZABLE` can be used for troubleshooting.
 - `NUM_CAMERAS`: number of cameras used in system. 
-- `EXPOSURE_TIMES`: array of exposure times for each camera. The order corresponds to the order of cameras in `SERIAL_ARR`.
+- `exposure_times`: array of exposure times for each camera. The order corresponds to the order of cameras in `SERIAL_ARR`.
 
 #### Calibrating image placement on display
 Different displays have different aspect ratios and resolutions. This must be calibrated for your system and can be done in the `CALIBRATE CROP POSITIONING` section in `parallel-dataset/capture_display.py`. We have included position parameters used in our set up. We recommend reviewing the [Pygame Surface documentation](https://www.pygame.org/docs/ref/surface.html) for further customization. 
 
 The image being displayed is cropped, with two copies placed on the screen, one for each lensless imager.
-- `crop_dim` : (w, h) - initalizes a canvas of size `CROP_DIM` on the display
+- `crop_dim` : (w, h) - initializes a canvas of size `CROP_DIM` on the display
 - `display_dim` : (w, h) - rescale of crop to screen
 - `rml_pos` : (x, y) - position of the image for rml on crop surface
 - `dc_pos` : (x, y) - position of the image for diffuser on crop surface
@@ -79,7 +79,7 @@ This script is controlled by the following command:
     
     python3 reconstruction.py DESTINATION SUB_DIR
 
-- `DESTINATION`: desired destination directory for recons. If used with our `capture_display` script, this is the same`DESTINATION` directory.
+- `DESTINATION`: desired destination directory for recons. If used with our `capture_display` script, this is the same `DESTINATION` directory.
 - `SUB_DIR`: name of the sub directory that includes lensless measurements.
 
 **NOTE:** the `DESTINATION` directory should contain a `psfs` directory. PSFs of each lensless imager should contain `cam_0` for the 0th indexed camera and `cam_1` for the 1st camera, etc. in the filename depending on your indexing convention.
@@ -97,12 +97,12 @@ Example Usage:
       The `.npz` file should contain two arrays: `camera_matrix` and `dist_coeffs`.
 2. Run the script from the command line. The script takes in 3 inputs:
     ```
-    python3 undistort.py --images [PATH TO IMAGES] --calibration_path [PATH TO CALIBRATION FILE] --root_path [ROOT DIRECTORY]
+    python3 parallel-dataset/undistort/undistort.py --images [PATH TO IMAGES] --calibration_path [PATH TO CALIBRATION FILE] --root_path [ROOT DIRECTORY]
     ```
 
     Example:
     ```
-    python3 undistort.py --images ./images --calibration_path ./calibration_data.npz --root_path ./output/
+    python3 parallel-dataset/undistort/undistort.py --images ./images --calibration_path parallel-dataset/undistort/PLD_calibration.npz --root_path ./output/
     ```
     - `--images`: Path to the folder containing images to undistort.
     - `--calibration_path`: Path to the `.npz` file containing camera calibration data.
@@ -128,17 +128,17 @@ Example usage:
     - Code is run at x4 downsampling by default. Make sure to change the downsampling dimensions to match desired output if not at x4.
 2. Run the script from the command line. The script takes in 4 inputs:
     - `--recon_path`: Path to the directory containing the input images.
-    - `--matrix_path`: Path to the .npy file containing the transformation matrix.
+    - `--matrix_path`: Path to the .torch file containing the transformation matrix.
     - `--output_dir`: Path to the directory where the warped images will be saved.
     - `--gray` (str): True if recons are grayscale.
 
     ```
     Example:
 
-        python parallel-dataset/homography/apply_homography.py --recon_path /path/to/recon/images --matrix_path /path/to/transformation_matrix.npy --output_dir /path/to/output/directory --gray False
+        python parallel-dataset/homography/apply_homography.py --recon_path /path/to/recon/images/ --matrix_path /path/to/transformation_matrix.torch --output_dir /path/to/output/directory/ --gray False
     ```
 3. Output:
-    - The undistorted images will be saved in the specified `--output_dir`.
+    - The warped images will be saved in the specified `--output_dir`.
 
 ## Automatic White Balance (AWB) PLD
 If you are using the 25,000 image AWB-PLD from [an earlier iteration](https://waller-lab.github.io/parallel-lensless-dataset/) of this project, please refer to the files under the folder `previous_AWB_dataset/`.

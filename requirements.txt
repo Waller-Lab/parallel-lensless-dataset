@@ -9,3 +9,4 @@ pypylon==26.7
 pytz==2024.1
 scikit_image==0.19.2
 torch==2.8.0
+tifffile==25.0.1
